@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Shaadi</string>
+    <string name="user_headshot_transition" translatable="false">speaker_headshot</string>
+    <string name="title_activity_maps">Address Location</string>
+    <string name="error_no_internet">No internet</string>
+    <string name="no_favourites_in_database">No Favourites in Database</string>
+    <string name="error_no_data">No data returned from server. Please try again</string>
+    <string name="error_network">Error fetching data. %1$s</string>
+    <string name="error_unknown">Unknown error. %1$s</string>
+    <string name="label_accept">Accept</string>
+    <string name="label_decline">Decline</string>
+    <string name="label_member_accepted">Member Accepted</string>
+    <string name="label_member_declined">Member Declined</string>
+    <string name="label_no_accepted_users">No accepted users in Database</string>
+    <string name="label_no_declined_users">No declined users in Database</string>
+    <string name="label_no_data_found">No data found</string>
+    <string name="error_invalid_lat_lng">Invalid Lat Lan !!</string>
+
+</resources>

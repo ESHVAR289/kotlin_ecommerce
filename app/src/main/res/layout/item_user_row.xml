@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.einfoplanet.demo.model.User" />
+
+        <variable
+            name="btnClickListener"
+            type="com.einfoplanet.demo.listeners.AcceptDeclineButtonClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> btnClickListener.onCardSelected(viewModel)}">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/speaker_item_headshot"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:importantForAccessibility="no"
+                android:transitionName="@string/user_headshot_transition"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                app:imageUrl="@{viewModel.large}"
+                app:layout_constraintBottom_toTopOf="@id/txt_user_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:singleLine="true"
+                android:text="@{viewModel.title + ` ` + viewModel.first + ` ` + viewModel.last}"
+                android:textAppearance="@style/TextAppearance.ADSSched.SpeakerTitle"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/speaker_item_headshot"
+                tools:text="Mr. Eshvar Bhagvat Mali"
+                tools:textColor="?android:textColorPrimary" />
+
+            <TextView
+                android:id="@+id/txt_user_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@{`Gender ` +viewModel.gender}"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_user_name"
+                tools:text="Male"
+                tools:textColor="?android:textColorPrimary" />
+
+            <TextView
+                android:id="@+id/txt_user_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{viewModel.age+ ` yrs`}"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_user_gender"
+                tools:text="25 yrs"
+                tools:textColor="?android:textColorPrimary" />
+
+            <TextView
+                android:id="@+id/txt_user_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="100dp"
+                android:singleLine="true"
+                android:text="@{viewModel.city + `, ` +viewModel.state}"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_user_age"
+                tools:text="Mumbai, Maharashtra, India"
+                tools:textColor="?android:textColorPrimary" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{() -> btnClickListener.onButtonClick(viewModel,1)}"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/label_accept"
+                android:textColor="@color/white"
+                app:changeAcceptButtonState="@{viewModel.flagAcceptDecline}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_decline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_user_address" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_decline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:onClick="@{() -> btnClickListener.onButtonClick(viewModel,2)}"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/label_decline"
+                android:textColor="@color/white"
+                app:changeNegativeButtonState="@{viewModel.flagAcceptDecline}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_accept"
+                app:layout_constraintTop_toBottomOf="@id/txt_user_address" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
