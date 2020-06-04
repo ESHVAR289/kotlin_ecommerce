@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.einfoplanet.demo.UserSampleApp
+import com.einfoplanet.demo.BookSampleApp
 import com.einfoplanet.demo.util.viewModelProvider
 import java.util.*
 import javax.inject.Inject
@@ -16,8 +16,8 @@ import javax.inject.Inject
 class DatePickerFragment constructor(val listener: DatePickerDialog.OnDateSetListener) : DialogFragment() {
 
     @Inject
-    lateinit var userListViewModelFactory: UserListViewModelFactory
-    private lateinit var booksViewModel: UserListViewModel
+    lateinit var userListViewModelFactory: BookListViewModelFactory
+    private lateinit var booksViewModel: BookListViewModel
     private lateinit var fragmentContext: Context
 
     companion object {
@@ -42,7 +42,7 @@ class DatePickerFragment constructor(val listener: DatePickerDialog.OnDateSetLis
 
     override fun onAttach(context: Context) {
         fragmentContext = context
-        UserSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        BookSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }
 

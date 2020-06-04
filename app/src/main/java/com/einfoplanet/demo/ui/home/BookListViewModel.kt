@@ -6,10 +6,10 @@ import com.einfoplanet.demo.AppExecutors
 import com.einfoplanet.demo.db.BookAuthor
 import com.einfoplanet.demo.db.BookDao
 import com.einfoplanet.demo.db.BookDetail
-import com.einfoplanet.demo.domain.booklist.UserListUseCase
+import com.einfoplanet.demo.domain.booklist.BookListUseCase
 import javax.inject.Inject
 
-class UserListViewModel @Inject constructor(private val userListUseCase: UserListUseCase,
+class BookListViewModel @Inject constructor(private val bookListUseCase: BookListUseCase,
                                             private val appExecutors: AppExecutors,
                                             private val bookDao: BookDao) : ViewModel() {
     init {
@@ -25,10 +25,10 @@ class UserListViewModel @Inject constructor(private val userListUseCase: UserLis
         }
     }
 
-    val books: LiveData<List<BookDetail>> = userListUseCase.getBooks()
+    val books: LiveData<List<BookDetail>> = bookListUseCase.getBooks()
 
     fun getBooks() {
-        userListUseCase.getBooks()
+        bookListUseCase.getBooks()
     }
 
     fun insertBookData(bookDetail: BookDetail) {

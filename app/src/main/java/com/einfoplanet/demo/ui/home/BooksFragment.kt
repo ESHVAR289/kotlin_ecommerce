@@ -12,17 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.einfoplanet.demo.R
-import com.einfoplanet.demo.UserSampleApp
+import com.einfoplanet.demo.BookSampleApp
 import com.einfoplanet.demo.adapter.BooksListAdapter
 import com.einfoplanet.demo.databinding.FragmentBooksBinding
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.repository.ErrorCode
 import com.einfoplanet.demo.util.toast
 import com.einfoplanet.demo.util.viewModelProvider
-import kotlinx.android.synthetic.main.add_book_dialog_fragment.*
 import javax.inject.Inject
 
 /**
@@ -36,19 +34,19 @@ class BooksFragment : Fragment(), MainNavigationFragment {
     }
 
     @Inject
-    lateinit var userListViewModelFactory: UserListViewModelFactory
-    private lateinit var usersViewModel: UserListViewModel
+    lateinit var bookListViewModelFactory: BookListViewModelFactory
+    private lateinit var booksViewModel: BookListViewModel
     private lateinit var binding: FragmentBooksBinding
     private lateinit var booksListAdapter: BooksListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        usersViewModel = viewModelProvider(userListViewModelFactory)
+        booksViewModel = viewModelProvider(bookListViewModelFactory)
 
         binding = FragmentBooksBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@BooksFragment)
-            viewModel = this@BooksFragment.usersViewModel
+            viewModel = this@BooksFragment.booksViewModel
         }
 
 
@@ -85,28 +83,23 @@ class BooksFragment : Fragment(), MainNavigationFragment {
             }
 
         })
-//        binding.btnAddBook.setOnClickListener {
-//
-//
-////            showDialog(AddBookDialogFragment.newInstance())
-//        }
     }
 
 
 
     override fun onResume() {
         super.onResume()
-        usersViewModel.getBooks()
+        booksViewModel.getBooks()
     }
 
     override fun onAttach(context: Context) {
-        UserSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        BookSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }
 
     fun initViewModel() {
 
-        usersViewModel.books.observe(viewLifecycleOwner, Observer {
+        booksViewModel.books.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 binding.rlBooks.visibility = View.VISIBLE
                 binding.empty.visibility = View.GONE

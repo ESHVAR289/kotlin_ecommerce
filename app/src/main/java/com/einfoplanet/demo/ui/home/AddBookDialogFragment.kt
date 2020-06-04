@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.einfoplanet.demo.UserSampleApp
+import com.einfoplanet.demo.BookSampleApp
 import com.einfoplanet.demo.databinding.AddBookDialogFragmentBinding
 import com.einfoplanet.demo.db.BookDetail
 import com.einfoplanet.demo.util.viewModelProvider
@@ -28,8 +28,8 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
     }
 
     @Inject
-    lateinit var userListViewModelFactory: UserListViewModelFactory
-    private lateinit var booksViewModel: UserListViewModel
+    lateinit var userListViewModelFactory: BookListViewModelFactory
+    private lateinit var booksViewModel: BookListViewModel
     private lateinit var binding: AddBookDialogFragmentBinding
     private var isImageSelected: Boolean = false
     private var isDateSelected: Boolean = false
@@ -38,7 +38,7 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
     private var strDateSelected: String = ""
 
     override fun onAttach(context: Context) {
-        UserSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        BookSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }
 

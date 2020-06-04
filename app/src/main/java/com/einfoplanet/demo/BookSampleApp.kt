@@ -20,7 +20,7 @@ import android.app.Application
 import com.einfoplanet.demo.di.component.ApplicationComponent
 import com.einfoplanet.demo.di.component.DaggerApplicationComponent
 
-class UserSampleApp : Application() {
+class BookSampleApp : Application() {
 
     private val appComponent: ApplicationComponent by lazy {
         DaggerApplicationComponent
@@ -35,7 +35,7 @@ class UserSampleApp : Application() {
     }
 
     companion object {
-        lateinit var instance: UserSampleApp
+        lateinit var instance: BookSampleApp
             private set
     }
 

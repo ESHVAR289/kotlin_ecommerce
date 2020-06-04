@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.einfoplanet.demo.ui.home.UserListViewModel" />
+            type="com.einfoplanet.demo.ui.home.BookListViewModel" />
     </data>
 
     <FrameLayout
