@@ -1,13 +1,11 @@
 package com.einfoplanet.demo.ui.home
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -20,8 +18,6 @@ import com.einfoplanet.demo.databinding.FragmentPhotosBinding
 import com.einfoplanet.demo.util.viewModelProvider
 import javax.inject.Inject
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val SELECTED_COVER_BOOK_ID = "BOOK_ID"
 
 /**
  * A simple [Fragment] subclass.
@@ -40,7 +36,7 @@ class PhotosFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            bookId = it.getString(SELECTED_COVER_BOOK_ID).toString()
+            bookId = it.getString(Companion.SELECTED_COVER_BOOK_ID).toString()
         }
     }
 
@@ -101,8 +97,10 @@ class PhotosFragment : DialogFragment() {
         fun newInstance(bookId: String) =
                 PhotosFragment().apply {
                     arguments = Bundle().apply {
-                        putString(SELECTED_COVER_BOOK_ID, bookId)
+                        putString(Companion.SELECTED_COVER_BOOK_ID, bookId)
                     }
                 }
+
+        private const val SELECTED_COVER_BOOK_ID = "BOOK_ID"
     }
 }
