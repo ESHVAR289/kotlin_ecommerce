@@ -90,9 +90,11 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
     }
 
     private fun insertData() {
-        if (isValidData())
+        if (isValidData()) {
             booksViewModel.insertBookData(getBookData())
-        else {
+            Toast.makeText(context!!, "Data inserted !!", Toast.LENGTH_SHORT).show()
+            dismiss()
+        } else {
             Toast.makeText(context!!, "Invalid data !!", Toast.LENGTH_SHORT).show()
         }
     }
