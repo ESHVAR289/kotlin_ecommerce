@@ -15,5 +15,18 @@
     <string name="label_no_declined_users">No declined users in Database</string>
     <string name="label_no_data_found">No data found</string>
     <string name="error_invalid_lat_lng">Invalid Lat Lan !!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_no_books_in_db">No books found in Database</string>
 
+    <string-array name="authors_array">
+        <item>Select Author</item>
+        <item>Albert Einstein</item>
+        <item>Robin Sharma</item>
+        <item>Robert Kiyosaki</item>
+        <item>Arundhati Roy</item>
+        <item>Salman Rushdie</item>
+        <item>Willian Shakespeare</item>
+        <item>Jhumpa Lahiri</item>
+    </string-array>
 </resources>

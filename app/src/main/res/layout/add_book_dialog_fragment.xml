@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.einfoplanet.demo.ui.home.UserListViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.AddBookDialogFragment">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:elevation="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_book_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:singleLine="true"
+                    android:text="Book Name"
+                    android:textAppearance="@style/TextAppearance.ADSSched.SpeakerTitle"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/et_book_name"
+                    app:layout_constraintEnd_toStartOf="@id/et_book_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_book_name"
+                    tools:text="Book Name : "
+                    tools:textColor="?android:textColorPrimary" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_book_name"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txt_book_name"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_book_author"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Author Name : "
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/spinner_author_name"
+                    app:layout_constraintEnd_toStartOf="@id/spinner_author_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/spinner_author_name"
+                    tools:textColor="?android:textColorPrimary" />
+
+                <Spinner
+                    android:id="@+id/spinner_author_name"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:dropDownWidth="200dp"
+                    android:focusable="true"
+                    android:overlapAnchor="false"
+                    android:spinnerMode="dropdown"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txt_book_author"
+                    app:layout_constraintTop_toBottomOf="@id/et_book_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:inputType="numberDecimal"
+                    android:text="Price : "
+                    android:textColor="@android:color/black"
+                    app:layout_constraintBottom_toBottomOf="@id/et_price"
+                    app:layout_constraintEnd_toStartOf="@id/et_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_price"
+                    tools:text="Price : 201 Rs"
+                    tools:textColor="?android:textColorPrimary" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_price"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txt_price"
+                    app:layout_constraintTop_toBottomOf="@id/spinner_author_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_doi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:singleLine="true"
+                    android:text="Select date of issue"
+                    android:textAppearance="@style/TextAppearance.ADSSched.SpeakerTitle"
+                    android:textColor="@android:color/black"
+                    app:layout_constraintEnd_toStartOf="@id/btn_select_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btn_select_date"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_select_date"
+                    tools:text="Date of Issue : 04/06/2020"
+                    tools:textColor="?android:textColorPrimary" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_select_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/et_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txt_doi"
+                    android:text="Select date"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_choose_cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Chose Photos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_select_date" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rl_gallery_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_choose_cover" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_submit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="SUBMIT"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rl_gallery_images" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>

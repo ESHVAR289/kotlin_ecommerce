@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        replaceFragment(UsersFragment())
+        replaceFragment(BooksFragment())
     }
 
     private fun <F> replaceFragment(fragment: F) where F : Fragment, F : MainNavigationFragment {

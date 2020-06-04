@@ -20,4 +20,9 @@ class UserDbModule() {
     @Provides
     @ApplicationScope
     fun provideUserDao(userDb: UserDb) = userDb.userDao()
+
+    @Provides
+    @ApplicationScope
+    fun provideBookDao(userDb: UserDb) = userDb.bookDao()
+
 }

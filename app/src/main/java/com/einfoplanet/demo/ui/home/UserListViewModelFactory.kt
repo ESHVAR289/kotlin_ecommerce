@@ -19,7 +19,7 @@ package com.einfoplanet.demo.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.einfoplanet.demo.AppExecutors
-import com.einfoplanet.demo.db.UserDao
+import com.einfoplanet.demo.db.BookDao
 import com.einfoplanet.demo.domain.userlist.UserListUseCase
 import timber.log.Timber
 import javax.inject.Inject
@@ -29,7 +29,7 @@ import javax.inject.Inject
  */
 class UserListViewModelFactory @Inject constructor(private val userListUseCase: UserListUseCase,
                                                    private val appExecutors: AppExecutors,
-                                                   private val userDao: UserDao) : ViewModelProvider.Factory {
+                                                   private val bookDao: BookDao) : ViewModelProvider.Factory {
     init {
         Timber.d("init")
     }
@@ -37,7 +37,7 @@ class UserListViewModelFactory @Inject constructor(private val userListUseCase: 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(UserListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return UserListViewModel(userListUseCase, appExecutors, userDao) as T
+            return UserListViewModel(userListUseCase, appExecutors, bookDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

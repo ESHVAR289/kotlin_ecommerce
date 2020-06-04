@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -37,25 +38,50 @@
                     android:textAppearance="@style/TextAppearance.ADSSched.ToolbarTitle" />
             </FrameLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize" />
         </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Add NEW" />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rl_books"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:pageMargin="@{@dimen/spacing_normal}"
-                app:pageMarginDrawable="@{@drawable/page_margin}" />
-        </LinearLayout>
+                android:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/loadingProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/schedule_page_padding_bottom"
+                android:drawableTop="@drawable/ic_default_avatar_1"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:gravity="center"
+                android:text="@string/no_favourites_in_database"
+                android:visibility="gone"
+                tools:text="No Books in Database" />
+        </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

@@ -108,69 +108,69 @@ class UsersListFragment : Fragment(), PageChangeListener {
     }
 
     private fun initViewModel() {
-        userListViewModel.users.observe(viewLifecycleOwner, Observer {
-            if (selectedFragment == USERS && it.isNotEmpty()) {
-                userListAdapter.submitList(it)
-                binding.empty.visibility = View.GONE
-            }
-        })
-
-        userListViewModel.usersLiveDataFromDB.observe(viewLifecycleOwner, Observer {
-            if (selectedFragment != USERS && it.isNotEmpty()) {
-                binding.rlAcceptedDeclined.visibility = View.VISIBLE
-                binding.empty.visibility = View.GONE
-                binding.rlAcceptedDeclined.invalidate()
-                acceptedDeclinedAdapter.setList(it)
-            } else {
-                binding.rlAcceptedDeclined.visibility = View.GONE
-                binding.empty.visibility = View.VISIBLE
-                if (selectedFragment == ACCEPTED_USERS) {
-                    binding.empty.text = getString(R.string.label_no_accepted_users)
-                } else if (selectedFragment == DECLINED_USERS) {
-                    binding.empty.text = getString(R.string.label_no_declined_users)
-                }
-
-            }
-        })
-
-        userListViewModel.clickedUser.observe(viewLifecycleOwner, Observer {
-            val intent = Intent(activity, MapsActivity::class.java)
-            val bundle = Bundle()
-            val userAddress = "${it.city}, ${it.state}, ${it.country}"
-
-            bundle.putString(USER_ADDRESS, userAddress)
-            bundle.putString(USER_LAT, it.latitude)
-            bundle.putString(USER_LNG, it.longitude)
-            intent.putExtra(MAPS_DATA, bundle)
-            if (it.latitude.isNotEmpty() && it.longitude.isNotEmpty()) {
-                startActivity(intent)
-            }else{
-                activity!!.toast(getString(R.string.error_no_data))
-            }
-        })
-
-        userListViewModel.loadingStatus.observe(viewLifecycleOwner, Observer { loadingStatus ->
-            when (loadingStatus?.status) {
-
-                Status.LOADING -> binding.loadingProgress.visibility = View.VISIBLE
-
-                Status.SUCCESS -> {
-                    binding.loadingProgress.visibility = View.INVISIBLE
-                    toggleRefreshing(false)
-                }
-
-                Status.ERROR -> {
-                    binding.loadingProgress.visibility = View.INVISIBLE
-                    toggleRefreshing(false)
-                    showErrorMessage(loadingStatus.errorCode, loadingStatus.message)
-                }
-            }
-
-        })
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            userListViewModel.refresh()
-        }
+//        userListViewModel.users.observe(viewLifecycleOwner, Observer {
+//            if (selectedFragment == USERS && it.isNotEmpty()) {
+//                userListAdapter.submitList(it)
+//                binding.empty.visibility = View.GONE
+//            }
+//        })
+//
+//        userListViewModel.usersLiveDataFromDB.observe(viewLifecycleOwner, Observer {
+//            if (selectedFragment != USERS && it.isNotEmpty()) {
+//                binding.rlAcceptedDeclined.visibility = View.VISIBLE
+//                binding.empty.visibility = View.GONE
+//                binding.rlAcceptedDeclined.invalidate()
+//                acceptedDeclinedAdapter.setList(it)
+//            } else {
+//                binding.rlAcceptedDeclined.visibility = View.GONE
+//                binding.empty.visibility = View.VISIBLE
+//                if (selectedFragment == ACCEPTED_USERS) {
+//                    binding.empty.text = getString(R.string.label_no_accepted_users)
+//                } else if (selectedFragment == DECLINED_USERS) {
+//                    binding.empty.text = getString(R.string.label_no_declined_users)
+//                }
+//
+//            }
+//        })
+//
+//        userListViewModel.clickedUser.observe(viewLifecycleOwner, Observer {
+//            val intent = Intent(activity, MapsActivity::class.java)
+//            val bundle = Bundle()
+//            val userAddress = "${it.city}, ${it.state}, ${it.country}"
+//
+//            bundle.putString(USER_ADDRESS, userAddress)
+//            bundle.putString(USER_LAT, it.latitude)
+//            bundle.putString(USER_LNG, it.longitude)
+//            intent.putExtra(MAPS_DATA, bundle)
+//            if (it.latitude.isNotEmpty() && it.longitude.isNotEmpty()) {
+//                startActivity(intent)
+//            }else{
+//                activity!!.toast(getString(R.string.error_no_data))
+//            }
+//        })
+//
+//        userListViewModel.loadingStatus.observe(viewLifecycleOwner, Observer { loadingStatus ->
+//            when (loadingStatus?.status) {
+//
+//                Status.LOADING -> binding.loadingProgress.visibility = View.VISIBLE
+//
+//                Status.SUCCESS -> {
+//                    binding.loadingProgress.visibility = View.INVISIBLE
+//                    toggleRefreshing(false)
+//                }
+//
+//                Status.ERROR -> {
+//                    binding.loadingProgress.visibility = View.INVISIBLE
+//                    toggleRefreshing(false)
+//                    showErrorMessage(loadingStatus.errorCode, loadingStatus.message)
+//                }
+//            }
+//
+//        })
+//
+//        binding.swipeRefreshLayout.setOnRefreshListener {
+//            userListViewModel.refresh()
+//        }
     }
 
     private fun loadDataFrommDB(selectedFragment: String) {

@@ -1,7 +1,5 @@
 package com.einfoplanet.demo.db
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
