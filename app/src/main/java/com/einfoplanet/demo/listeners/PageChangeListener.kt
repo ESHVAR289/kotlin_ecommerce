@@ -1,5 +1,5 @@
 package com.einfoplanet.demo.listeners
 
-interface PageChangeListener {
-    fun refreshDb(selectedFragment: String)
+interface CoverImageClickListener {
+    fun coverImageClick(bookId: String)
 }

@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.databinding.ItemBookDetailBinding
 import com.einfoplanet.demo.db.BookDetail
+import com.einfoplanet.demo.listeners.CoverImageClickListener
 
 
 class BooksListAdapter constructor(
-        private var booksListData: List<BookDetail>
+        private var booksListData: List<BookDetail>,
+        private val coverImageClickListener: CoverImageClickListener
 ) : RecyclerView.Adapter<BooksListAdapter.CustomViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val binding = DataBindingUtil.inflate<ItemBookDetailBinding>(
@@ -40,7 +42,7 @@ class BooksListAdapter constructor(
         fun bind(bookData: BookDetail) {
             if (binding == null)
                 binding = DataBindingUtil.bind(itemView)
-
+            binding!!.converImageClickListener = coverImageClickListener
             binding!!.viewModel = bookData
         }
     }

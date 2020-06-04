@@ -10,5 +10,6 @@ data class BookDetail(
         @SerializedName("book_name") var bookName: String,
         @SerializedName("author_name") var authorName: String,
         @SerializedName("price") var price: String,
-        @SerializedName("date_of_issue") var dateOfIssue: String
+        @SerializedName("date_of_issue") var dateOfIssue: String,
+        @SerializedName("cover_image_path") var coverImgPath: String
 )

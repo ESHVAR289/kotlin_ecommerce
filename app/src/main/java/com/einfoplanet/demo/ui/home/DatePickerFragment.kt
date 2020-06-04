@@ -4,25 +4,11 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.einfoplanet.demo.BookSampleApp
-import com.einfoplanet.demo.util.viewModelProvider
 import java.util.*
-import javax.inject.Inject
 
 class DatePickerFragment constructor(val listener: DatePickerDialog.OnDateSetListener) : DialogFragment() {
-
-    @Inject
-    lateinit var userListViewModelFactory: BookListViewModelFactory
-    private lateinit var booksViewModel: BookListViewModel
-    private lateinit var fragmentContext: Context
-
-    companion object {
-        fun newInstance() = AddBookDialogFragment()
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         // Use the current date as the default date in the picker
@@ -35,13 +21,7 @@ class DatePickerFragment constructor(val listener: DatePickerDialog.OnDateSetLis
         return DatePickerDialog(context!!, listener , year, month, day)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        booksViewModel = viewModelProvider(userListViewModelFactory)
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
     override fun onAttach(context: Context) {
-        fragmentContext = context
         BookSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }

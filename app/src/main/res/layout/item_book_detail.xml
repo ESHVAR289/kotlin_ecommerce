@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.einfoplanet.demo.db.BookDetail" />
+
+        <variable
+            name="converImageClickListener"
+            type="com.einfoplanet.demo.listeners.CoverImageClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -85,6 +89,8 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:onClick="@{() -> converImageClickListener.coverImageClick(viewModel.id)}"
+                app:imageUrl="@{viewModel.coverImgPath}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

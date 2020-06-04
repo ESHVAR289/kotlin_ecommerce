@@ -143,6 +143,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/btn_choose_cover" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_no_data"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/ic_default_avatar_1"
+                    app:layout_constraintBottom_toTopOf="@id/btn_submit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_choose_cover" />
+
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_submit"

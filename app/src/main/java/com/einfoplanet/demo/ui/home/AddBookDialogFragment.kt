@@ -1,8 +1,11 @@
 package com.einfoplanet.demo.ui.home
 
 import android.R
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +14,19 @@ import android.view.WindowManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import com.einfoplanet.demo.BookSampleApp
+import com.einfoplanet.demo.adapter.PhotosGridAdapter
 import com.einfoplanet.demo.databinding.AddBookDialogFragmentBinding
 import com.einfoplanet.demo.db.BookDetail
+import com.einfoplanet.demo.db.BookImagesData
 import com.einfoplanet.demo.util.viewModelProvider
+import com.fxn.pix.Options
+import com.fxn.pix.Pix
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -36,6 +46,10 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
     private var isAuthorSelected: Boolean = false
     private var strSelectedAuthor: String = ""
     private var strDateSelected: String = ""
+    private var bookId: String = rand(1, 1000)
+    private lateinit var photosGridAdapter: PhotosGridAdapter
+    var returnValue: List<String> = emptyList()
+    var imagesData: List<BookImagesData> = mutableListOf()
 
     override fun onAttach(context: Context) {
         BookSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
@@ -62,11 +76,26 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
         }
 
         binding.btnChooseCover.setOnClickListener {
+            val options: Options = Options.init()
+                    .setExcludeVideos(true)
+                    .setRequestCode(100) //Request code for activity results
+                    .setCount(5) //Number of images to restict selection count
+                    .setFrontfacing(false) //Front Facing camera on start
+                    .setVideoDurationLimitinSeconds(30) //Duration for video recording
+                    .setScreenOrientation(Options.SCREEN_ORIENTATION_PORTRAIT) //Orientaion
 
+            Pix.start(this, options)
         }
 
         binding.btnSubmit.setOnClickListener {
-            insertData()
+            returnValue.let {
+                if (returnValue.isNotEmpty()) {
+                    insertImageData(imagesData)
+                    insertData(returnValue[0])
+                } else {
+                    Toast.makeText(context!!, "Invalid data !!", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
 
@@ -85,13 +114,30 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == 100) {
+            returnValue = data?.getStringArrayListExtra(Pix.IMAGE_RESULTS)!!.toList()
+            returnValue.let {
+                imagesData = getImageBookData(returnValue)
+                if (imagesData.isNotEmpty() && bookId.isNotEmpty()) {
+                    isImageSelected = true
+                    showSelectedImages(imagesData)
+                } else {
+                    Toast.makeText(context!!, "Nothing selected !!", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+    }
+
     override fun show(manager: FragmentManager, tag: String?) {
         manager.beginTransaction().add(this, tag).commitAllowingStateLoss()
     }
 
-    private fun insertData() {
+    private fun insertData(coverImagePath: String) {
         if (isValidData()) {
-            booksViewModel.insertBookData(getBookData())
+            booksViewModel.insertBookData(getBookData(coverImagePath))
             Toast.makeText(context!!, "Data inserted !!", Toast.LENGTH_SHORT).show()
             dismiss()
         } else {
@@ -99,7 +145,12 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
         }
     }
 
+    private fun insertImageData(imagesData: List<BookImagesData>) {
+        booksViewModel.insertBooksImages(imagesData)
+    }
 
+
+    //Check if all the data field are filled
     private fun isValidData(): Boolean {
         return !(binding.etBookName.toString().isEmpty() ||
                 binding.etPrice.toString().isEmpty() ||
@@ -107,12 +158,37 @@ class AddBookDialogFragment : DialogFragment(), AdapterView.OnItemSelectedListen
                 !isAuthorSelected)
     }
 
-    private fun getBookData(): BookDetail {
+    private fun showSelectedImages(imagesData: List<BookImagesData>) {
+        photosGridAdapter = PhotosGridAdapter(imagesData)
+        binding.imgNoData.visibility = View.INVISIBLE
+        binding.rlGalleryImages.layoutManager = GridLayoutManager(context, 3)
+        binding.rlGalleryImages.apply {
+            adapter = photosGridAdapter
+            (itemAnimator as DefaultItemAnimator).run {
+                supportsChangeAnimations = false
+                addDuration = 160L
+                moveDuration = 160L
+                changeDuration = 160L
+                removeDuration = 120L
+            }
+        }
+    }
+
+    private fun getBookData(coverImagePath: String): BookDetail {
         return BookDetail(bookName = binding.etBookName.text.toString(),
                 authorName = strSelectedAuthor,
                 dateOfIssue = strDateSelected,
                 price = binding.etPrice.text.toString(),
-                id = rand(1, 1000))
+                id = bookId,
+                coverImgPath = coverImagePath)
+    }
+
+    private fun getImageBookData(returnValue: List<String>): List<BookImagesData> {
+        val imageBookData: ArrayList<BookImagesData> = mutableListOf<BookImagesData>() as ArrayList<BookImagesData>
+        returnValue.forEach {
+            imageBookData.add(BookImagesData(rand(1, 1000), bookId, it))
+        }
+        return imageBookData
     }
 
     override fun onResume() {

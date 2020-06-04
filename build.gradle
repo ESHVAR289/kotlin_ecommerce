@@ -52,6 +52,7 @@ buildscript {
         }
         // Android Build Server
         maven { url '../adssched-prebuilts/m2repository' }
+        maven { url 'https://jitpack.io' }
 
     }
     dependencies {
