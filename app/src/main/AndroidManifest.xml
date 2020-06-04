@@ -18,10 +18,6 @@
             android:value="AIzaSyA6RZ-Afz65IZ67WKcPV0hfPutyOGMMKlw" />
 
         <activity
-            android:name=".ui.map.MapsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ui.launcher.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">

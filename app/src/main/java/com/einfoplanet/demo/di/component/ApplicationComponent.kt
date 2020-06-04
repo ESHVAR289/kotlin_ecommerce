@@ -7,8 +7,7 @@ import dagger.BindsInstance
 import dagger.Component
 
 
-@Component(modules = [ApplicationModule::class,
-    UserDbModule::class,
+@Component(modules = [BookDbModule::class,
     UserRetrofitModule::class])
 @ApplicationScope
 interface ApplicationComponent{

@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.einfoplanet.demo.AppExecutors
 import com.einfoplanet.demo.db.BookDao
-import com.einfoplanet.demo.domain.userlist.UserListUseCase
+import com.einfoplanet.demo.domain.booklist.UserListUseCase
 import timber.log.Timber
 import javax.inject.Inject
 

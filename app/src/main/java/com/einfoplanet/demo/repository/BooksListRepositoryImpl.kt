@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import com.einfoplanet.demo.AppExecutors
 import com.einfoplanet.demo.db.BookAuthor
 import com.einfoplanet.demo.db.BookDetail
-import com.einfoplanet.demo.domain.userlist.UsersListRepository
+import com.einfoplanet.demo.domain.booklist.UsersListRepository
 import javax.inject.Inject
 
 
-class UserListRepositoryImpl @Inject constructor(
+class BooksListRepositoryImpl @Inject constructor(
         private val appExecutors: AppExecutors,
-        private val localData: UserLocalData
+        private val localData: BooksLocalData
 ) : UsersListRepository {
 
     override fun getBooks(): LiveData<List<BookDetail>> {

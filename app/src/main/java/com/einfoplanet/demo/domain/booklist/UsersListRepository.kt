@@ -1,12 +1,8 @@
-package com.einfoplanet.demo.domain.userlist
+package com.einfoplanet.demo.domain.booklist
 
 import androidx.lifecycle.LiveData
-import androidx.paging.PagedList
 import com.einfoplanet.demo.db.BookAuthor
 import com.einfoplanet.demo.db.BookDetail
-import com.einfoplanet.demo.model.User
-import com.einfoplanet.demo.domain.BoundaryState
-import com.einfoplanet.demo.repository.LoadingStatus
 
 // As we need to interact with repostiory which is in data layer. Implementing Dependency Inversion
 // Principle we create an interface which concrete respository class in data layer implements.

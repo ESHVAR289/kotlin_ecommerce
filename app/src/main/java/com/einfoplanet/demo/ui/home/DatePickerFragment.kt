@@ -7,10 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import com.einfoplanet.demo.UserSampleApp
-import com.einfoplanet.demo.listeners.DateSelecteListener
 import com.einfoplanet.demo.util.viewModelProvider
 import java.util.*
 import javax.inject.Inject
@@ -48,9 +46,4 @@ class DatePickerFragment constructor(val listener: DatePickerDialog.OnDateSetLis
         super.onAttach(context)
     }
 
-//    override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
-//        // Do something with the date chosen by the user
-////        booksViewModel.strDateSelected.value = "$day/$month/$year"
-////        booksViewModel.strDateSelected.value = ""
-//    }
 }

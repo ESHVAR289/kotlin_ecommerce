@@ -17,10 +17,8 @@
 package com.einfoplanet.demo
 
 import android.app.Application
-import com.einfoplanet.demo.BuildConfig
 import com.einfoplanet.demo.di.component.ApplicationComponent
 import com.einfoplanet.demo.di.component.DaggerApplicationComponent
-import timber.log.Timber
 
 class UserSampleApp : Application() {
 
@@ -34,9 +32,6 @@ class UserSampleApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        if (BuildConfig.DEBUG) {
-            Timber.plant(PrefixDebugTree())
-        }
     }
 
     companion object {

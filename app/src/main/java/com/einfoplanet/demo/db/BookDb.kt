@@ -6,7 +6,6 @@ import androidx.room.TypeConverters
 
 @Database(
         entities = [
-            UserData::class,
             BookDetail::class,
             BookAuthor::class,
             BookImagesData::class
@@ -15,7 +14,6 @@ import androidx.room.TypeConverters
         exportSchema = false
 )
 @TypeConverters(DbTypeConverters::class)
-abstract class UserDb : RoomDatabase() {
-    abstract fun userDao(): UserDao
+abstract class BookDb : RoomDatabase() {
     abstract fun bookDao(): BookDao
 }
