@@ -1,5 +1,6 @@
 package com.einfoplanet.demo.ui.welcome
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +13,8 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.einfoplanet.demo.R
+import com.einfoplanet.demo.ui.home.MainActivity
+import com.einfoplanet.demo.util.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 
@@ -22,9 +25,10 @@ class WelcomeActivity : AppCompatActivity() {
             R.layout.welcome_slide3,
             R.layout.welcome_slide4)
     private val viewPager: ViewPager by lazy { view_pager }
+    private val sharedPref: SharedPrefUtil by lazy { SharedPrefUtil(this) }
 
     //  viewpager change listener
-    var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
+    private var viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
         override fun onPageSelected(position: Int) {
             addBottomDots(position)
             // changing the next button text 'NEXT' / 'GOT IT'
@@ -43,8 +47,11 @@ class WelcomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Making notification bar transparent
 
+        if (!sharedPref.isFirstTimeLaunch()) {
+            launchHomeScreen()
+            finish()
+        }
 
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
@@ -80,6 +87,9 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun launchHomeScreen() {
+        sharedPref.setFirstTimeLaunch(false)
+        val i = Intent(this@WelcomeActivity, MainActivity::class.java)
+        startActivity(i)
         Log.e("WelcomeActivity", "launchHomeScreen()")
     }
 
