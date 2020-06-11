@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.einfoplanet.demo.R
-import com.einfoplanet.demo.ui.home.MainActivity
+import com.einfoplanet.demo.ui.welcome.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, WelcomeActivity::class.java))
             finish()
         }, 3000)
     }
