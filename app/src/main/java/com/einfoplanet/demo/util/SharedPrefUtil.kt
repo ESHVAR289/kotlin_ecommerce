@@ -10,6 +10,7 @@ class SharedPrefUtil(context: Context) {
     companion object {
         private const val IS_FIRST_TIME_LAUNCH = "isFirstTimeLaunch"
         private const val PREFERENCE_NAME = "sharedPrefFileName"
+        private const val IS_LOGIN = "isLogin"
 
         // Shared pref mode
         private const val PRIVATE_MODE = 0
@@ -27,5 +28,9 @@ class SharedPrefUtil(context: Context) {
 
     fun isFirstTimeLaunch(): Boolean {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true)
+    }
+
+    fun isLoggedIn(): Boolean {
+        return pref.getBoolean(IS_LOGIN, false)
     }
 }
