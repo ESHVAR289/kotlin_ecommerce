@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.ui.home.MainActivity
+import com.einfoplanet.demo.ui.login.LoginActivity
 import com.einfoplanet.demo.util.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_welcome.*
 
@@ -88,9 +88,11 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         sharedPref.setFirstTimeLaunch(false)
-        val i = Intent(this@WelcomeActivity, MainActivity::class.java)
-        startActivity(i)
-        Log.e("WelcomeActivity", "launchHomeScreen()")
+        if (!sharedPref.isLoggedIn()) {
+            startActivity(Intent(this@WelcomeActivity, LoginActivity::class.java))
+        } else {
+            startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+        }
     }
 
     /**

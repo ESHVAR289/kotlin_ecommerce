@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.2.1'
+    implementation 'androidx.annotation:annotation:1.1.0'
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
     testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
 
