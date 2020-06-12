@@ -1,9 +1,9 @@
 package com.einfoplanet.demo.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.repository.LoginRepository
 import com.einfoplanet.demo.repository.Result
