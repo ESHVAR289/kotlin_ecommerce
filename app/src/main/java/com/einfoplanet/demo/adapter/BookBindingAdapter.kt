@@ -1,7 +1,10 @@
 package com.einfoplanet.demo.adapter
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -92,4 +95,17 @@ fun goneIfEmptyList(
 @BindingAdapter("pageMargin")
 fun pageMargin(viewPager: ViewPager, pageMargin: Float) {
     viewPager.pageMargin = pageMargin.toInt()
+}
+
+@BindingAdapter("ratingColor")
+fun setTextViewTint(textView: TextView, colorValue: String?) {
+
+    textView.background = (textView.background as? GradientDrawable ?: GradientDrawable()).apply {
+        setTint(Color.parseColor("#$colorValue"))
+    }
+}
+
+@BindingAdapter("visibleGone")
+fun showHide(view: View, show: Boolean) {
+    if (show) view.visibility = View.VISIBLE else view.visibility = View.GONE
 }
