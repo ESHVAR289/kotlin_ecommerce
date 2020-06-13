@@ -35,9 +35,10 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
  * val myViewModel = viewModelProvider(myViewModelFactory)
  * ```
  */
-//inline fun <reified VM : ViewModel> FragmentActivity.viewModelProvider(
-//        provider: ViewModelProvider.Factory
-//) = ViewModelProviders.of(this, provider).get(VM::class.java)
+inline fun <reified VM : ViewModel> FragmentActivity.viewModelProvider(
+        provider: ViewModelProvider.Factory
+) = ViewModelProviders.of(this, provider).get(VM::class.java)
+
 inline fun <reified VM : ViewModel> FragmentActivity.viewModelProvider(
 ) = ViewModelProviders.of(this).get(VM::class.java)
 

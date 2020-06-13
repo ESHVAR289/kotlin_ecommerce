@@ -1,9 +1,9 @@
 package com.einfoplanet.demo.network
 
+import com.einfoplanet.demo.domain.restaurantlist.RestaurantListRepository
 import com.einfoplanet.demo.model.Restaurants
 import com.einfoplanet.demo.repository.ErrorCode
 import com.einfoplanet.demo.repository.LoadingStatus
-import com.einfoplanet.demo.repository.RestaurantRemoteData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,7 +11,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class RestaurantRemoteDataImpl @Inject constructor(private val restaurantService: RestaurantService) :
-        RestaurantRemoteData {
+        RestaurantListRepository {
     override fun fetchNearbyRestaurant(lat: Double,
                                        lng: Double,
                                        onSuccess: (restaurants: Restaurants) -> Unit,

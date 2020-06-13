@@ -34,7 +34,7 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{viewModel.thumb}"
-                app:layout_constraintDimensionRatio="w,2:3"
+                app:layout_constraintDimensionRatio="w,2:4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
