@@ -1,19 +1,18 @@
 package com.einfoplanet.demo.di.component
 
-import com.einfoplanet.demo.di.module.BookDataModule
 import com.einfoplanet.demo.di.module.BookDomainModule
+import com.einfoplanet.demo.di.module.RestaurantDataModule
 import com.einfoplanet.demo.di.scope.FragmentScope
-import com.einfoplanet.demo.ui.home.AddBookDialogFragment
-import com.einfoplanet.demo.ui.home.BooksFragment
-import com.einfoplanet.demo.ui.home.DatePickerFragment
-import com.einfoplanet.demo.ui.home.PhotosFragment
+import com.einfoplanet.demo.ui.home.*
 import dagger.Subcomponent
 
-@Subcomponent(modules = [BookDataModule::class, BookDomainModule::class])
+@Subcomponent(modules = [RestaurantDataModule::class, BookDomainModule::class])
 @FragmentScope
 interface FragmentComponent {
     fun inject(booksFragment: BooksFragment)
     fun inject(addBookDialogFragment: AddBookDialogFragment)
     fun inject(datePickerFragment: DatePickerFragment)
     fun inject(photosFragment: PhotosFragment)
+    fun inject(restaurantsFragment: RestaurantsFragment)
+    fun inject(restaurantsActivity: RestaurantsActivity)
 }
