@@ -12,8 +12,7 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.einfoplanet.demo.R
-import com.einfoplanet.demo.ui.home.MainActivity
-import com.einfoplanet.demo.ui.login.LoginActivity
+import com.einfoplanet.demo.ui.home.RestaurantsActivity
 import com.einfoplanet.demo.util.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_welcome.*
 
@@ -89,9 +88,9 @@ class WelcomeActivity : AppCompatActivity() {
     private fun launchHomeScreen() {
         sharedPref.setFirstTimeLaunch(false)
         if (!sharedPref.isLoggedIn()) {
-            startActivity(Intent(this@WelcomeActivity, LoginActivity::class.java))
+            startActivity(Intent(this@WelcomeActivity, RestaurantsActivity::class.java))
         } else {
-            startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+            startActivity(Intent(this@WelcomeActivity, RestaurantsActivity::class.java))
         }
     }
 

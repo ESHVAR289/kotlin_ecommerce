@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.einfoplanet.demo.BookSampleApp
+import com.einfoplanet.demo.ShoppingSampleApp
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.adapter.BooksListAdapter
 import com.einfoplanet.demo.databinding.FragmentBooksBinding
@@ -49,7 +49,6 @@ class BooksFragment : Fragment(), MainNavigationFragment {
 
         booksListAdapter = BooksListAdapter(emptyList(), object : CoverImageClickListener {
             override fun coverImageClick(bookId: String) {
-                showImageGridAdapter(bookId)
             }
 
         })
@@ -74,9 +73,7 @@ class BooksFragment : Fragment(), MainNavigationFragment {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnAddBook.setOnClickListener {
-            val fm: FragmentManager = parentFragmentManager
-            val addBookDialogFragment: AddBookDialogFragment = AddBookDialogFragment.newInstance()
-            addBookDialogFragment.show(fm, "add_book_fragment")
+
         }
     }
 
@@ -88,7 +85,7 @@ class BooksFragment : Fragment(), MainNavigationFragment {
     }
 
     override fun onAttach(context: Context) {
-        BookSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        ShoppingSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
         super.onAttach(context)
     }
 
@@ -117,9 +114,4 @@ class BooksFragment : Fragment(), MainNavigationFragment {
         }
     }
 
-    private fun showImageGridAdapter(bookId: String) {
-        val fm: FragmentManager = parentFragmentManager
-        val photosDialogFragment: PhotosFragment = PhotosFragment.newInstance(bookId)
-        photosDialogFragment.show(fm, "add_book_fragment")
-    }
 }
