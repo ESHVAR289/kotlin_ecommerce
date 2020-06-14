@@ -157,6 +157,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:enabled="false"
                         style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="PayTm" />
 
@@ -165,6 +166,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:enabled="false"
                         style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="Mobikwick" />
 
@@ -173,6 +175,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:checked="true"
+                        android:focusable="false"
                         style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="COD" />
 
@@ -199,6 +203,8 @@
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:nextFocusDown="@id/et_email_id"
                     style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:hint="Enter Name" />
 
@@ -206,6 +212,8 @@
                     android:id="@+id/et_email_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:nextFocusDown="@id/et_mobile_no"
                     style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:hint="Enter Email" />
 
@@ -214,6 +222,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number"
+                    android:digits="0123456789"
+                    android:maxEms="10"
+                    android:maxLength="10"
+                    android:nextFocusDown="@id/et_complete_address"
                     style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:inputType="number" />
 
@@ -221,6 +233,8 @@
                     android:id="@+id/et_complete_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:nextFocusDown="@id/et_pin_code"
                     style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:hint="Complete address"
                     android:minLines="3" />

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.einfoplanet.demo.databinding.FragmentOrderDetailsBinding
@@ -52,8 +53,18 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
         }
 
         binding.btnOrderNow.setOnClickListener {
-            val orderId = "ODD" + getRandomNo(1000, 50000)
-            buttonClick.confirmButtonClick(orderId)
+            if (checkAllFieldAreInputted()) {
+                val orderId = "ODD" + getRandomNo(1000, 50000)
+                buttonClick.confirmButtonClick(orderId)
+            }
+        }
+
+        binding.rbPaytm.setOnClickListener {
+            Toast.makeText(requireContext(), "This feature will coming soon", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.rbMobikwick.setOnClickListener {
+            Toast.makeText(requireContext(), "This feature will coming soon", Toast.LENGTH_SHORT).show()
         }
 
         initViewModel()
@@ -65,6 +76,27 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
         require(start <= end) { "Illegal Argument" }
         val rand = Random(System.nanoTime())
         return (start..end).random(rand).toString()
+    }
+
+    fun checkAllFieldAreInputted(): Boolean {
+        if (binding.etName.text.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Required name", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (binding.etEmailId.text.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Required email", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (binding.etMobileNo.text.isNullOrEmpty() || binding.etMobileNo.text.toString().length < 10) {
+            Toast.makeText(requireContext(), "Please insert valid mobile no", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (binding.etCompleteAddress.text.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Please fill your detail address", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (binding.etPinCode.text.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Please input your pin", Toast.LENGTH_SHORT).show()
+            return false
+        } else {
+            return true
+        }
     }
 
     private fun initViewModel() {
