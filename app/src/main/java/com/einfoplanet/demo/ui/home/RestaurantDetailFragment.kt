@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.einfoplanet.demo.databinding.FragmentRestaurantDetailBinding
 import com.einfoplanet.demo.listeners.MainNavigationFragment
+import com.einfoplanet.demo.ui.login.afterTextChanged
 import com.einfoplanet.demo.util.AppConstants.Companion.SELECTED_RESTAURANT_ID
 import com.einfoplanet.demo.util.activityViewModelProvider
 
@@ -21,6 +22,7 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
 
     private lateinit var viewModel: RestaurantsViewModel
     private lateinit var binding: FragmentRestaurantDetailBinding
+    private var quantity: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,34 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
             }
         }
 
+        binding.txtAddToCart.setOnClickListener {
+            //Check before adding product into cart
+            viewModel.cartProductsLiveData.value?.forEach {
+                if (it.restaurantId == viewModel.singleRestaurantData.value!!.id) {
+                    Toast.makeText(requireContext(), "Product already present into your cart.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
+            viewModel.addProductToCart(viewModel.singleRestaurantData.value!!)
+            Toast.makeText(requireContext(), "Product added successfully.", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnIncrementQuantity.setOnClickListener {
+            increment()
+        }
+
+        binding.btnDecrementQuantity.setOnClickListener {
+            decrement()
+        }
+
+        binding.etProductQuantity.afterTextChanged {
+            if (binding.etProductQuantity.text.isEmpty()) {
+                binding.etProductQuantity.setText("0")
+            } else if (binding.etProductQuantity.text.toString().toInt() >= 10) {
+                Toast.makeText(requireContext(), "Product Count Must be less than 10", Toast.LENGTH_LONG).show()
+            }
+        }
+
         initViewModel()
 
         return binding.root
@@ -64,6 +94,23 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
         })
 
         viewModel.getRestaurantDetail(viewModel.selectedResId)
+    }
+
+    private fun increment() {
+        if (quantity < 10) {
+            quantity++
+            binding.etProductQuantity.setText(quantity.toString())
+        } else {
+            Toast.makeText(requireContext(), "Product Count Must be less than 10", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun decrement() {
+        if (quantity > 1) {
+            quantity--
+            binding.etProductQuantity.setText(quantity.toString())
+        } else
+            binding.etProductQuantity.setText("0")
     }
 
     companion object {

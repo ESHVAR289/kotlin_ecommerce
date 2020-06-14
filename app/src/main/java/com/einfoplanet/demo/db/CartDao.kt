@@ -11,12 +11,15 @@ interface CartDao {
     @Query("SELECT * FROM CARTPRODUCT")
     fun getAllCartProducts(): LiveData<List<CartProduct>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProduct(product: CartProduct)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertProduct(product: CartProduct): Long
 
     @Query("SELECT COUNT(*) FROM CARTPRODUCT")
-    fun getCartProductCount(): Int
+    fun getCartProductCount(): LiveData<Int>
 
     @Query("SELECT SUM(quantity * averageCostForTwo) FROM CARTPRODUCT")
-    fun getAllProductTotalPrice(): Int
+    fun getAllProductTotalPrice(): LiveData<Int>
+
+    @Query("DELETE FROM CARTPRODUCT where restaurantId= :restaurantId")
+    fun deleteProductFromCart(restaurantId: Int): Int
 }

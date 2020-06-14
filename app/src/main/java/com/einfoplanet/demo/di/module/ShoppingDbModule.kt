@@ -8,10 +8,10 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class BookDbModule() {
+class ShoppingDbModule() {
     @Provides
     @ApplicationScope
-    fun providShoppingDb(application: Application) =
+    fun provideShoppingDb(application: Application) =
             Room.databaseBuilder(
                     application,
                     ShoppingDb::class.java, "cart.db"

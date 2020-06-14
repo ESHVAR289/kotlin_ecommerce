@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.databinding.CartItemLayoutBinding
 import com.einfoplanet.demo.db.CartProduct
+import com.einfoplanet.demo.listeners.RemoveCartProductClickEventListener
 
 /**
  * Adapter used to load the photos of selected restaurant.
  */
 class CartProductListAdapter constructor(
+        private val removeCartProductClickEventListener: RemoveCartProductClickEventListener,
         private var cartProductsList: List<CartProduct>) : RecyclerView.Adapter<CartProductListAdapter.CustomViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val binding = DataBindingUtil.inflate<CartItemLayoutBinding>(
@@ -25,8 +27,8 @@ class CartProductListAdapter constructor(
         return cartProductsList.size
     }
 
-    fun setList(photosList: List<CartProduct>) {
-        this.cartProductsList = photosList
+    fun setList(cartProductsList: List<CartProduct>) {
+        this.cartProductsList = cartProductsList
         notifyDataSetChanged()
     }
 
@@ -41,6 +43,8 @@ class CartProductListAdapter constructor(
         fun bind(cartProduct: CartProduct) {
             if (binding == null)
                 binding = DataBindingUtil.bind(itemView)
+
+            binding!!.removeCartProductClickEventListener = removeCartProductClickEventListener
             binding!!.viewModel = cartProduct
         }
     }

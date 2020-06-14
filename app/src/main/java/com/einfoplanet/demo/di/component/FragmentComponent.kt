@@ -1,14 +1,15 @@
 package com.einfoplanet.demo.di.component
 
-import com.einfoplanet.demo.di.module.BookDomainModule
+import com.einfoplanet.demo.di.module.CartModule
 import com.einfoplanet.demo.di.module.RestaurantDataModule
 import com.einfoplanet.demo.di.scope.FragmentScope
-import com.einfoplanet.demo.ui.home.*
+import com.einfoplanet.demo.ui.cart.CartActivity
+import com.einfoplanet.demo.ui.home.RestaurantsActivity
 import dagger.Subcomponent
 
-@Subcomponent(modules = [RestaurantDataModule::class, BookDomainModule::class])
+@Subcomponent(modules = [RestaurantDataModule::class, CartModule::class])
 @FragmentScope
 interface FragmentComponent {
-    fun inject(booksFragment: BooksFragment)
     fun inject(restaurantsActivity: RestaurantsActivity)
+    fun inject(cartActivity: CartActivity)
 }

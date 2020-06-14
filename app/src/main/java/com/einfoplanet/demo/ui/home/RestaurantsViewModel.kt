@@ -1,9 +1,11 @@
 package com.einfoplanet.demo.ui.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.einfoplanet.demo.AppExecutors
+import com.einfoplanet.demo.db.CartProduct
+import com.einfoplanet.demo.domain.cartlist.CartProductListUseCase
 import com.einfoplanet.demo.domain.restaurantlist.RestaurantListUseCase
 import com.einfoplanet.demo.listeners.RestaurantClickedEventListener
 import com.einfoplanet.demo.model.Restaurant
@@ -11,7 +13,7 @@ import com.einfoplanet.demo.model.Restaurants
 import javax.inject.Inject
 
 class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase: RestaurantListUseCase,
-                                               private val appExecutors: AppExecutors) : ViewModel(),
+                                               private val cartProductListUseCase: CartProductListUseCase) : ViewModel(),
         RestaurantClickedEventListener {
     companion object {
     }
@@ -23,6 +25,9 @@ class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase
     private val _singleRestaurantData: MutableLiveData<Restaurant> by lazy { MutableLiveData<Restaurant>() }
     val singleRestaurantData: MutableLiveData<Restaurant>
         get() = _singleRestaurantData
+
+    val itemsIntoCart: LiveData<Int> = cartProductListUseCase.getCartProductsCount()
+    val cartProductsLiveData: LiveData<List<CartProduct>> = cartProductListUseCase.getAllCartProducts()
 
     private val _popularityLiveData: MutableLiveData<Restaurants.Popularity> by lazy { MutableLiveData<Restaurants.Popularity>() }
     val popularityLiveData: MutableLiveData<Restaurants.Popularity>
@@ -63,6 +68,17 @@ class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase
                     _errorMessage.value = it.message
                 }
         )
+    }
+
+    fun addProductToCart(restaurant: Restaurant) {
+        cartProductListUseCase.addProductToCart(CartProduct(
+                restaurantId = restaurant.id,
+                restaurantName = restaurant.name,
+                url = restaurant.url,
+                quantity = 3,
+                averageCostForTwo = restaurant.averageCostForTwo,
+                thumb = restaurant.thumb
+        ))
     }
 
     override fun onRestaurantSelected(restaurant: Restaurants.NearbyRestaurant.Restaurant) {

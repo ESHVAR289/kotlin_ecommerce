@@ -1,6 +1,5 @@
 package com.einfoplanet.demo.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.einfoplanet.demo.AppExecutors
@@ -8,10 +7,10 @@ import com.einfoplanet.demo.db.BookAuthor
 import com.einfoplanet.demo.db.BookDao
 import com.einfoplanet.demo.db.BookDetail
 import com.einfoplanet.demo.db.BookImagesData
-import com.einfoplanet.demo.domain.booklist.BookListUseCase
+import com.einfoplanet.demo.domain.cartlist.CartProductListUseCase
 import javax.inject.Inject
 
-class BookListViewModel @Inject constructor(private val bookListUseCase: BookListUseCase,
+class BookListViewModel @Inject constructor(private val bookListUseCase: CartProductListUseCase,
                                             private val appExecutors: AppExecutors,
                                             private val bookDao: BookDao) : ViewModel() {
     init {
@@ -28,10 +27,8 @@ class BookListViewModel @Inject constructor(private val bookListUseCase: BookLis
     }
 
     val imagesLiveData: MutableLiveData<List<BookImagesData>> by lazy { MutableLiveData<List<BookImagesData>>() }
-    val books: LiveData<List<BookDetail>> = bookListUseCase.getBooks()
 
     fun getBooks() {
-        bookListUseCase.getBooks()
     }
 
     fun getImagesData(bookId: String) {

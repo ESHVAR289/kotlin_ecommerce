@@ -2,7 +2,7 @@ package com.einfoplanet.demo.ui.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.einfoplanet.demo.domain.booklist.CartProductListUseCase
+import com.einfoplanet.demo.domain.cartlist.CartProductListUseCase
 import javax.inject.Inject
 
 class CartViewModelFactory

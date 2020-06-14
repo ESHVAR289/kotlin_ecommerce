@@ -111,6 +111,7 @@
                         android:inputType="number"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
+                        android:text="0"
                         tools:text="1" />
 
                     <Button

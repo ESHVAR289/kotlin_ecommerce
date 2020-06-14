@@ -89,11 +89,11 @@
     <dimen name="ic_album_overflow_height">30dp</dimen>
     <dimen name="ic_album_overflow_margin_top">10dp</dimen>
 
-    <dimen name="text_size_xsmall">8dp</dimen>
-    <dimen name="text_size_small">10dp</dimen>
-    <dimen name="text_size_medium">12dp</dimen>
-    <dimen name="text_size_xmedium">14dp</dimen>
-    <dimen name="text_size_large">16dp</dimen>
+    <dimen name="text_size_xsmall">8sp</dimen>
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_medium">12sp</dimen>
+    <dimen name="text_size_xmedium">14sp</dimen>
+    <dimen name="text_size_large">16sp</dimen>
     <dimen name="view_width_small">1dp</dimen>
     <dimen name="view_width_xsmall">0.5dp</dimen>
     <dimen name="margin_small">4dp</dimen>
