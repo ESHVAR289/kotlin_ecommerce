@@ -26,4 +26,8 @@ class CartLocalDataImpl @Inject constructor(private val appExecutors: AppExecuto
         return cartDao.getCartProductCount()
     }
 
+    override fun getTotalCartAmount(): LiveData<Int> {
+        return cartDao.getAllProductTotalPrice()
+    }
+
 }

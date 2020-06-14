@@ -11,4 +11,5 @@ interface CartListRepository {
     fun removeFromCart(cartProduct: CartProduct)
     fun addProductToCart(cartProduct: CartProduct)
     fun getCartProductsCount(): LiveData<Int>
+    fun getTotalCartAmount(): LiveData<Int>
 }
