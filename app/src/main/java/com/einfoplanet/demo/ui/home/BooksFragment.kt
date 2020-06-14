@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.einfoplanet.demo.ShoppingSampleApp
 import com.einfoplanet.demo.R
+import com.einfoplanet.demo.ShoppingSampleApp
 import com.einfoplanet.demo.adapter.BooksListAdapter
 import com.einfoplanet.demo.databinding.FragmentBooksBinding
 import com.einfoplanet.demo.listeners.CoverImageClickListener

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.einfoplanet.demo.AppExecutors
 import com.einfoplanet.demo.domain.restaurantlist.RestaurantListUseCase
 import com.einfoplanet.demo.listeners.RestaurantClickedEventListener
+import com.einfoplanet.demo.model.Restaurant
 import com.einfoplanet.demo.model.Restaurants
 import javax.inject.Inject
 
@@ -15,9 +16,13 @@ class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase
     companion object {
     }
 
-    private val _restaurantLiveData: MutableLiveData<List<Restaurants.NearbyRestaurant>> by lazy { MutableLiveData<List<Restaurants.NearbyRestaurant>>() }
-    val restaurantLiveData: MutableLiveData<List<Restaurants.NearbyRestaurant>>
-        get() = _restaurantLiveData
+    private val _restaurantsLiveData: MutableLiveData<List<Restaurants.NearbyRestaurant>> by lazy { MutableLiveData<List<Restaurants.NearbyRestaurant>>() }
+    val restaurantsLiveData: MutableLiveData<List<Restaurants.NearbyRestaurant>>
+        get() = _restaurantsLiveData
+
+    private val _singleRestaurantData: MutableLiveData<Restaurant> by lazy { MutableLiveData<Restaurant>() }
+    val singleRestaurantData: MutableLiveData<Restaurant>
+        get() = _singleRestaurantData
 
     private val _popularityLiveData: MutableLiveData<Restaurants.Popularity> by lazy { MutableLiveData<Restaurants.Popularity>() }
     val popularityLiveData: MutableLiveData<Restaurants.Popularity>
@@ -37,14 +42,27 @@ class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase
 
     var currentLatitude: Double = 0.0
     var currentLongitude: Double = 0.0
+    var selectedResId: String = ""
     var updatedList: List<Restaurants.NearbyRestaurant> = emptyList()
 
     fun getNearbyRestaurants(currentLatitude: Double, currentLongitude: Double) {
         restaurantListUseCase.fetchNearbyRestaurant(19.126582, 72.865980, {
-            _restaurantLiveData.value = it.nearByRestaurant
+            _restaurantsLiveData.value = it.nearByRestaurant
         }, {
             _errorMessage.value = it.message
         })
+    }
+
+    fun getRestaurantDetail(restaurantId: String) {
+        restaurantListUseCase.getRestaurantDetail(
+                restaurantId,
+                {
+                    _singleRestaurantData.value = it
+                },
+                {
+                    _errorMessage.value = it.message
+                }
+        )
     }
 
     override fun onRestaurantSelected(restaurant: Restaurants.NearbyRestaurant.Restaurant) {

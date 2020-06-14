@@ -3,8 +3,9 @@ package com.einfoplanet.demo.ui.home
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.einfoplanet.demo.ShoppingSampleApp
+import androidx.lifecycle.Observer
 import com.einfoplanet.demo.R
+import com.einfoplanet.demo.ShoppingSampleApp
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.util.inTransaction
 import com.einfoplanet.demo.util.viewModelProvider
@@ -29,12 +30,31 @@ class RestaurantsActivity : AppCompatActivity() {
                 0.0,
                 0.0
         ))
+        initViewModel()
+    }
+
+    private fun initViewModel() {
+        viewModel.clickedRestaurantData.observe(this, Observer {
+            addFragment(
+                    RestaurantDetailFragment.newInstance(
+                            it.id
+                    )
+            )
+        })
     }
 
     private fun <F> replaceFragment(fragment: F) where F : Fragment, F : MainNavigationFragment {
         supportFragmentManager.inTransaction {
             currentFragment = fragment
             replace(FRAGMENT_ID, fragment)
+        }
+    }
+
+    private fun <F> addFragment(fragment: F) where F : Fragment, F : MainNavigationFragment {
+        supportFragmentManager.inTransaction {
+            currentFragment = fragment
+            addToBackStack(FRAGMENT_ID.toString())
+            add(FRAGMENT_ID, fragment)
         }
     }
 

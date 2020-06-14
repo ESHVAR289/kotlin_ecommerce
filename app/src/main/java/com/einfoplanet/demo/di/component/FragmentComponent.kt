@@ -10,6 +10,5 @@ import dagger.Subcomponent
 @FragmentScope
 interface FragmentComponent {
     fun inject(booksFragment: BooksFragment)
-    fun inject(restaurantsFragment: RestaurantsFragment)
     fun inject(restaurantsActivity: RestaurantsActivity)
 }

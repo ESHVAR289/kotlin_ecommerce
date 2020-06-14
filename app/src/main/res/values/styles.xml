@@ -51,26 +51,8 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="TextAppearance.ADSSched.ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:fontFamily">@font/google_sans</item>
-    </style>
-
-    <style name="Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="titleTextAppearance">@style/TextAppearance.ADSSched.ToolbarTitle</item>
-        <item name="popupTheme">@style/AppTheme.PopupTheme</item>
-    </style>
-
-    <style name="TextAppearance.ADSSched.SessionTitle" parent="@style/TextAppearance.AppCompat.Subhead">
-        <item name="android:fontFamily">@font/google_sans</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
     <style name="TextAppearance.ADSSched.SessionTitle2" parent="@style/TextAppearance.AppCompat.Subhead">
         <item name="android:fontFamily">@font/google_sans</item>
         <item name="android:textStyle">normal</item>
-    </style>
-
-    <style name="TextAppearance.ADSSched.SpeakerTitle" parent="@style/TextAppearance.ADSSched.SessionTitle">
-        <item name="android:textColor">?colorPrimary</item>
     </style>
 </resources>

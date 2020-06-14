@@ -1,5 +1,6 @@
 package com.einfoplanet.demo.domain.restaurantlist
 
+import com.einfoplanet.demo.model.Restaurant
 import com.einfoplanet.demo.model.Restaurants
 import com.einfoplanet.demo.repository.LoadingStatus
 import javax.inject.Inject
@@ -15,5 +16,11 @@ class RestaurantListUseCase @Inject constructor(private val restaurantRepository
                 onSuccess,
                 onStatus
         )
+    }
+
+    fun getRestaurantDetail(restaurantId: String,
+                            onSuccess: (restauran: Restaurant) -> Unit,
+                            onStatus: (status: LoadingStatus) -> Unit) {
+        restaurantRepository.getRestaurantDetail(restaurantId, onSuccess, onStatus)
     }
 }

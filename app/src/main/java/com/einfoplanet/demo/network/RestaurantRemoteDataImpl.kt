@@ -1,6 +1,7 @@
 package com.einfoplanet.demo.network
 
 import com.einfoplanet.demo.domain.restaurantlist.RestaurantListRepository
+import com.einfoplanet.demo.model.Restaurant
 import com.einfoplanet.demo.model.Restaurants
 import com.einfoplanet.demo.repository.ErrorCode
 import com.einfoplanet.demo.repository.LoadingStatus
@@ -44,4 +45,36 @@ class RestaurantRemoteDataImpl @Inject constructor(private val restaurantService
             }
         })
     }
+
+    override fun getRestaurantDetail(restaurantId: String, onSuccess: (restaurant: Restaurant) -> Unit, onStatus: (status: LoadingStatus) -> Unit) {
+        val call = restaurantService.getRestaurantDetail(restaurantId)
+
+        call.enqueue(object : Callback<Restaurant> {
+            override fun onFailure(call: Call<Restaurant>, t: Throwable) {
+                if (t is IOException) {
+                    onStatus(
+                            LoadingStatus.error(
+                                    ErrorCode.NETWORK_ERROR, t.message))
+                } else {
+                    onStatus(
+                            LoadingStatus.error(
+                                    ErrorCode.UNKNOWN_ERROR, null))
+                }
+            }
+
+            override fun onResponse(call: Call<Restaurant>, response: Response<Restaurant>) {
+                if (response.body() == null) {
+                    onStatus(LoadingStatus.error(ErrorCode.NO_DATA))
+                } else {
+                    response.body()?.let {
+                        onSuccess(it)
+                    }
+                    onStatus(LoadingStatus.success())
+                }
+            }
+
+        })
+    }
+
+
 }

@@ -1,6 +1,5 @@
 package com.einfoplanet.demo.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.einfoplanet.demo.ShoppingSampleApp
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.adapter.RestaurantGridAdapter
 import com.einfoplanet.demo.databinding.FragmentRestaurantsBinding
@@ -18,9 +16,8 @@ import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.util.AppConstants.Companion.CURRENT_LATITUDE
 import com.einfoplanet.demo.util.AppConstants.Companion.CURRENT_LONGITUDE
 import com.einfoplanet.demo.util.NetworkUtils
-import com.einfoplanet.demo.util.viewModelProvider
+import com.einfoplanet.demo.util.activityViewModelProvider
 import org.jetbrains.anko.runOnUiThread
-import javax.inject.Inject
 
 /**
  * This is the fragment which is used to show the list of restaurants.
@@ -29,8 +26,6 @@ import javax.inject.Inject
 class RestaurantsFragment : Fragment(), MainNavigationFragment {
     companion object {
         private val TAG = RestaurantsFragment::class.java.simpleName
-        private const val ARG_SELECTED_FRAGMENT = "arg.SELECTED_FRAGMENT"
-        const val ARG_SELECTED_RESTAURANT_ID = "arg.SELECTED_RESTAURANT_ID"
 
         fun newInstance(
                 lat: Double? = 0.0,
@@ -44,8 +39,6 @@ class RestaurantsFragment : Fragment(), MainNavigationFragment {
         }
     }
 
-    @Inject
-    lateinit var restaurantViewModelFactory: RestaurantListViewModelFactory
     private lateinit var viewModel: RestaurantsViewModel
     private lateinit var binding: FragmentRestaurantsBinding
     private lateinit var restaurantAdapter: RestaurantGridAdapter
@@ -55,7 +48,7 @@ class RestaurantsFragment : Fragment(), MainNavigationFragment {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        viewModel = viewModelProvider(restaurantViewModelFactory)
+        viewModel = activityViewModelProvider()
         binding = FragmentRestaurantsBinding.inflate(inflater, container, false).apply {
             setLifecycleOwner(this@RestaurantsFragment)
             viewModel = this@RestaurantsFragment.viewModel
@@ -89,7 +82,7 @@ class RestaurantsFragment : Fragment(), MainNavigationFragment {
 
     private fun initViewModel() {
 
-        viewModel.restaurantLiveData.observe(viewLifecycleOwner, Observer {
+        viewModel.restaurantsLiveData.observe(viewLifecycleOwner, Observer {
             restaurantAdapter.setList(it)
         })
 
@@ -108,12 +101,6 @@ class RestaurantsFragment : Fragment(), MainNavigationFragment {
                     }
                 }
             }
-        })
-
-        viewModel.clickedRestaurantData.observe(viewLifecycleOwner, Observer {
-//            val intent = Intent(activity, RestaurantDetailsActivity::class.java)
-//            intent.putExtra(ARG_SELECTED_RESTAURANT_ID, it.id)
-//            startActivity(intent)
         })
 
         checkNetworkAndLoadData()
@@ -150,11 +137,6 @@ class RestaurantsFragment : Fragment(), MainNavigationFragment {
 
     override fun onBackPressed(): Boolean {
         return true
-    }
-
-    override fun onAttach(context: Context) {
-        ShoppingSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
-        super.onAttach(context)
     }
 
 }

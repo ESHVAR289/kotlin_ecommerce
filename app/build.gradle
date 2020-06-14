@@ -13,6 +13,7 @@ android {
         versionName rootProject.versionName
         versionCode 1
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "ZOMATO_API_KEY", "\"35464abe3d7abeb348ea02d8761ef769\""
     }
     buildTypes {
         release {
