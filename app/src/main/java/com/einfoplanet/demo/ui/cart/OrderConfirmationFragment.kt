@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.einfoplanet.demo.databinding.FragmentOrderDetailsBinding
+import com.einfoplanet.demo.databinding.FragmentOrderPlacedBinding
 import com.einfoplanet.demo.listeners.MainNavigationFragment
-import com.einfoplanet.demo.util.AppConstants.Companion.SELECTED_RESTAURANT_ID
 import com.einfoplanet.demo.util.activityViewModelProvider
 
 /**
@@ -20,7 +18,7 @@ import com.einfoplanet.demo.util.activityViewModelProvider
 class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
 
     private lateinit var viewModel: CartViewModel
-    private lateinit var binding: FragmentOrderDetailsBinding
+    private lateinit var binding: FragmentOrderPlacedBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +31,7 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         viewModel = activityViewModelProvider()
-        binding = FragmentOrderDetailsBinding.inflate(inflater, container, false).apply {
+        binding = FragmentOrderPlacedBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@OrderConfirmationFragment
             viewModel = this@OrderConfirmationFragment.viewModel
         }
@@ -49,11 +47,7 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
 
     companion object {
 
-        fun newInstance(restaurantId: String) =
-                OrderConfirmationFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(SELECTED_RESTAURANT_ID, restaurantId)
-                    }
-                }
+        fun newInstance() =
+                OrderConfirmationFragment()
     }
 }
