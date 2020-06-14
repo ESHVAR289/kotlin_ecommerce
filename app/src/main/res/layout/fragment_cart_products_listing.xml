@@ -14,10 +14,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            style="@style/Widget.AppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/margin_normal"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed|enterAlways">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:minHeight="?actionBarSize"
+                    android:text="@{`My Cart(` + viewModel.cartProductsCount + `)`}"
+                    android:textAppearance="@style/TextAppearance.ADSSched.ToolbarTitle"
+                    tools:text="My Cart(5)" />
+            </FrameLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingBottom="@dimen/schedule_page_padding_bottom"
@@ -25,7 +54,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ll_layout"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
             tools:ignore="UnusedAttribute" />
 
         <ProgressBar
@@ -52,5 +82,41 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:visibleGone="@{viewModel.cartProductsLiveData.size() > 0}" />
+
+        <LinearLayout
+            android:id="@+id/ll_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerview">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/txt_cart_value"
+                style="@style/TextAppearance.ADSSched.SessionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:text="@{`Rs `+viewModel.cartTotalAmount}"
+                android:textAllCaps="false"
+                tools:text="₹ 15490" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_place_order"
+                style="@style/TextAppearance.ADSSched.SessionTitle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:text="Place Order"
+                android:textAllCaps="false"
+                android:textColor="@color/gen_white"
+                android:textStyle="bold" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
