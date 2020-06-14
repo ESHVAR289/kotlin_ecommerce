@@ -61,8 +61,8 @@ class CartActivity : AppCompatActivity(), ButtonClickListener {
         addFragment(OrderDetailsFragment.newInstance())
     }
 
-    override fun confirmButtonClick() {
-        replaceFragment(OrderConfirmationFragment.newInstance())
+    override fun confirmButtonClick(orderId: String) {
+        replaceFragment(OrderConfirmationFragment.newInstance(orderId))
     }
 
     override fun okButtonClick() {

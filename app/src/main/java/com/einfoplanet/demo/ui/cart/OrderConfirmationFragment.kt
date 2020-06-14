@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.einfoplanet.demo.databinding.FragmentOrderDetailsBinding
 import com.einfoplanet.demo.databinding.FragmentOrderPlacedBinding
 import com.einfoplanet.demo.listeners.MainNavigationFragment
+import com.einfoplanet.demo.util.AppConstants
 import com.einfoplanet.demo.util.activityViewModelProvider
 
 /**
@@ -19,11 +19,15 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
 
     private lateinit var viewModel: CartViewModel
     private lateinit var binding: FragmentOrderPlacedBinding
+    private var orderId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            val bundle: Bundle = arguments as Bundle
+            bundle.let {
+                orderId = it.getString(AppConstants.UNIQUE_ORDER_ID)!!
+            }
         }
     }
 
@@ -36,18 +40,20 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
             viewModel = this@OrderConfirmationFragment.viewModel
         }
 
-        initViewModel()
+        binding.txtOrderId.text = orderId
 
         return binding.root
     }
 
-    private fun initViewModel() {
-
-    }
-
     companion object {
 
-        fun newInstance() =
-                OrderConfirmationFragment()
+        fun newInstance(orderId: String): OrderConfirmationFragment {
+
+            val args = Bundle().apply {
+                putString(AppConstants.UNIQUE_ORDER_ID, orderId)
+            }
+            return OrderConfirmationFragment().apply { arguments = args }
+
+        }
     }
 }

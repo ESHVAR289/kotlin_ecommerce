@@ -12,6 +12,7 @@ import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.util.activityViewModelProvider
 import kotlinx.android.synthetic.main.fragment_order_details.*
+import kotlin.random.Random
 
 /**
  * A simple [Fragment] subclass.
@@ -50,20 +51,20 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
             viewModel = this@OrderDetailsFragment.viewModel
         }
 
-        arguments?.let {
-            val bundle: Bundle = arguments as Bundle
-            bundle.let {
-//                viewModel.selectedResId = it.getString(SELECTED_RESTAURANT_ID)!!
-            }
-        }
-
         binding.btnOrderNow.setOnClickListener {
-            cartProductFragmentButtonClick.confirmButtonClick()
+            val orderId = "ODD" + getRandomNo(1000, 50000)
+            cartProductFragmentButtonClick.confirmButtonClick(orderId)
         }
 
         initViewModel()
 
         return binding.root
+    }
+
+    private fun getRandomNo(start: Int, end: Int): String {
+        require(start <= end) { "Illegal Argument" }
+        val rand = Random(System.nanoTime())
+        return (start..end).random(rand).toString()
     }
 
     private fun initViewModel() {
@@ -80,7 +81,6 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
     }
 
     companion object {
-
         fun newInstance() =
                 OrderDetailsFragment()
     }
