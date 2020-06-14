@@ -1,16 +1,18 @@
 package com.einfoplanet.demo.ui.cart
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.ShoppingSampleApp
+import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.util.inTransaction
 import com.einfoplanet.demo.util.viewModelProvider
 import javax.inject.Inject
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : AppCompatActivity(), ButtonClickListener {
 
     companion object {
         private const val FRAGMENT_ID = R.id.fragment_container
@@ -54,8 +56,17 @@ class CartActivity : AppCompatActivity() {
         }
     }
 
-    override fun onUserInteraction() {
-        super.onUserInteraction()
-        currentFragment.onUserInteraction()
+    override fun placeOrderButtonClick() {
+
+        addFragment(OrderDetailsFragment.newInstance())
     }
+
+    override fun confirmButtonClick() {
+        replaceFragment(OrderConfirmationFragment.newInstance())
+    }
+
+    override fun okButtonClick() {
+        Log.e("FRAGMENT", "okButtonClick()")
+    }
+
 }
