@@ -54,10 +54,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="9"
+                        style="@style/TextAppearance.ADSSched.SessionTitle"
+                        android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:text="@{viewModel.restaurantName}"
-                        android:textSize="@dimen/text_size_xmedium"
-                        android:textStyle="bold"
+                        android:singleLine="true"
                         tools:text="Pizza" />
 
                     <ImageView
@@ -67,7 +68,7 @@
                         android:layout_weight="1"
                         android:padding="5dp"
                         android:onClick="@{()->removeCartProductClickEventListener.onProductSelected(viewModel)}"
-                        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+                        android:src="@drawable/ic_clear_black_18dp" />
 
                 </LinearLayout>
 
@@ -76,15 +77,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:text="@{`Rs. `+ viewModel.averageCostForTwo*viewModel.quantity}"
-                    android:textColor="#4CAF50"
-                    android:textSize="@dimen/text_size_xmedium"
-                    tools:text="Rs. 8,999" />
+                    style="@style/TextAppearance.ADSSched.SpeakerTitle"
+                    android:text="@{`Rs `+ viewModel.averageCostForTwo*viewModel.quantity}"
+                    tools:text="Rs 8,999" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Delivery charge: FREE"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:textSize="@dimen/text_size_small" />
 
                 <TextView
@@ -93,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{`Qty: `+ viewModel.quantity}"
                     android:textSize="@dimen/text_size_small"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     tools:text="Qty: 1" />
 
             </LinearLayout>
