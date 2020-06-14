@@ -1,32 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data >
+
+    <data>
+
         <variable
             name="viewModel"
             type="com.einfoplanet.demo.ui.cart.CartViewModel" />
     </data>
+
     <RelativeLayout
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/white">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbarwrap"
+            android:id="@+id/appbar"
+            style="@style/Widget.AppBar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:background="@color/colorAccent"
-                app:titleTextColor="#000" />
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/margin_normal"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed|enterAlways">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:minHeight="?actionBarSize"
+                    android:text="Order Summary"
+                    android:textAppearance="@style/TextAppearance.ADSSched.ToolbarTitle" />
+            </FrameLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/toolbarwrap"
+            android:layout_below="@id/appbar"
             android:scrollbars="vertical">
 
             <LinearLayout
@@ -47,6 +66,7 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:text="Order Details"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="#424242" />
 
                     <LinearLayout
@@ -55,15 +75,15 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/fonts"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Total No. of Items : "
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
                             android:textColor="#424242" />
 
                         <TextView
                             android:id="@+id/txt_no_of_items"
-                            style="@style/headingfonts"
+                            style="@style/TextAppearance.ADSSched.SessionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10"
@@ -77,7 +97,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/fonts"
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Total Amount : "
@@ -85,7 +105,7 @@
 
                         <TextView
                             android:id="@+id/txt_total_amount"
-                            style="@style/headingfonts"
+                            style="@style/TextAppearance.ADSSched.SessionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="15000"
@@ -99,7 +119,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/fonts"
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Estimated Delivery Date : "
@@ -107,7 +127,7 @@
 
                         <TextView
                             android:id="@+id/txt_delivery_date"
-                            style="@style/headingfonts"
+                            style="@style/TextAppearance.ADSSched.SessionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="28/06/2020"
@@ -117,7 +137,7 @@
                 </LinearLayout>
 
                 <TextView
-                    style="@style/headingfonts"
+                    style="@style/TextAppearance.ADSSched.SessionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
@@ -137,6 +157,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="PayTm" />
 
                     <RadioButton
@@ -144,6 +165,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="Mobikwick" />
 
                     <RadioButton
@@ -151,6 +173,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="COD" />
 
                 </RadioGroup>
@@ -163,7 +186,7 @@
                     android:background="@color/grey_light" />
 
                 <TextView
-                    style="@style/headingfonts"
+                    style="@style/TextAppearance.ADSSched.SessionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
@@ -176,12 +199,14 @@
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:hint="Enter Name" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_email_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:hint="Enter Email" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -189,12 +214,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:inputType="number" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/et_complete_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:hint="Complete address"
                     android:minLines="3" />
 
@@ -204,15 +231,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     android:hint="Pincode"
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:inputType="number" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimaryDark"
-                    android:text="ORDER NOW"
-                    android:textColor="@color/white" />
             </LinearLayout>
         </ScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_order_now"
+            style="@style/TextAppearance.ADSSched.SessionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark"
+            android:text="Continue"
+            android:textColor="@color/white" />
     </RelativeLayout>
 </layout>

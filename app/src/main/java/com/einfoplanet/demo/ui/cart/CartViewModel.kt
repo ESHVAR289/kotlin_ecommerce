@@ -12,6 +12,7 @@ class CartViewModel @Inject constructor(private val cartProductListUseCase: Cart
     private val _carProductsLiveData: MutableLiveData<List<CartProduct>> by lazy { MutableLiveData<List<CartProduct>>() }
     val cartProductsLiveData: LiveData<List<CartProduct>> = cartProductListUseCase.getAllCartProducts()
     val cartProductsCount: LiveData<Int> = cartProductListUseCase.getCartProductsCount()
+    val cartTotalAmount: LiveData<Int> = cartProductListUseCase.getTotalCartAmount()
 
     fun removeCartProduct(cartProduct: CartProduct) {
         cartProductListUseCase.removeCartProduct(cartProduct)
