@@ -6,14 +6,12 @@ import androidx.room.TypeConverters
 
 @Database(
         entities = [
-            BookDetail::class,
-            BookAuthor::class,
-            BookImagesData::class
+            CartProduct::class
         ],
         version = 1,
         exportSchema = false
 )
 @TypeConverters(DbTypeConverters::class)
-abstract class BookDb : RoomDatabase() {
-    abstract fun bookDao(): BookDao
+abstract class ShoppingDb : RoomDatabase() {
+    abstract fun cartDao(): CartDao
 }
