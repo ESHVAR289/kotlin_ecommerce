@@ -23,12 +23,12 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
 
     private lateinit var viewModel: CartViewModel
     private lateinit var binding: FragmentOrderDetailsBinding
-    private lateinit var cartProductFragmentButtonClick: ButtonClickListener
+    private lateinit var buttonClick: ButtonClickListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ButtonClickListener) {
-            cartProductFragmentButtonClick = context
+            buttonClick = context
         } else {
             throw RuntimeException(context.toString()
                     + " must implement listener");
@@ -53,7 +53,7 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
 
         binding.btnOrderNow.setOnClickListener {
             val orderId = "ODD" + getRandomNo(1000, 50000)
-            cartProductFragmentButtonClick.confirmButtonClick(orderId)
+            buttonClick.confirmButtonClick(orderId)
         }
 
         initViewModel()

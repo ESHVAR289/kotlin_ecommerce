@@ -1,14 +1,15 @@
 package com.einfoplanet.demo.ui.cart
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.einfoplanet.demo.databinding.FragmentOrderPlacedBinding
+import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.util.AppConstants
-import com.einfoplanet.demo.util.activityViewModelProvider
 
 /**
  * A simple [Fragment] subclass.
@@ -16,10 +17,19 @@ import com.einfoplanet.demo.util.activityViewModelProvider
  * create an instance of this fragment.
  */
 class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
-
-    private lateinit var viewModel: CartViewModel
     private lateinit var binding: FragmentOrderPlacedBinding
     private var orderId: String = ""
+    private lateinit var buttonClick: ButtonClickListener
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is ButtonClickListener) {
+            buttonClick = context
+        } else {
+            throw RuntimeException(context.toString()
+                    + " must implement listener");
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +44,14 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        viewModel = activityViewModelProvider()
         binding = FragmentOrderPlacedBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@OrderConfirmationFragment
-            viewModel = this@OrderConfirmationFragment.viewModel
         }
 
         binding.txtOrderId.text = orderId
+        binding.ivClose.setOnClickListener {
+            buttonClick.closeButtonClick()
+        }
 
         return binding.root
     }

@@ -26,7 +26,7 @@ class CartProductsListingFragment : Fragment(), MainNavigationFragment {
     private lateinit var viewModel: CartViewModel
     private lateinit var binding: FragmentCartProductsListingBinding
     private lateinit var cartProductsListAdapter: CartProductListAdapter
-    private lateinit var cartProductFragmentButtonClick: ButtonClickListener
+    private lateinit var buttonClick: ButtonClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,7 @@ class CartProductsListingFragment : Fragment(), MainNavigationFragment {
         }
 
         binding.btnPlaceOrder.setOnClickListener {
-            cartProductFragmentButtonClick.placeOrderButtonClick()
+            buttonClick.placeOrderButtonClick()
         }
         initViewModel()
 
@@ -79,7 +79,7 @@ class CartProductsListingFragment : Fragment(), MainNavigationFragment {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ButtonClickListener) {
-            cartProductFragmentButtonClick = context
+            buttonClick = context
         } else {
             throw RuntimeException(context.toString()
                     + " must implement listener");
