@@ -25,4 +25,8 @@ class CartProductListUseCase @Inject constructor(private val repository: CartLis
     fun getTotalCartAmount(): LiveData<Int> {
         return repository.getTotalCartAmount()
     }
+
+    fun clearCart() {
+        repository.clearCart()
+    }
 }

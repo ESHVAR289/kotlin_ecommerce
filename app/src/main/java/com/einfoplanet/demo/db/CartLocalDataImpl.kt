@@ -30,4 +30,10 @@ class CartLocalDataImpl @Inject constructor(private val appExecutors: AppExecuto
         return cartDao.getAllProductTotalPrice()
     }
 
+    override fun clearCart() {
+        appExecutors.diskIO().execute {
+            cartDao.clearCart()
+        }
+    }
+
 }

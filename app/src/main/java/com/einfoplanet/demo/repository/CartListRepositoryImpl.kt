@@ -24,4 +24,6 @@ class CartListRepositoryImpl @Inject constructor(private val localData: CartLoca
     override fun getCartProductsCount(): LiveData<Int> = localData.getCartProductCount()
 
     override fun getTotalCartAmount(): LiveData<Int> = localData.getTotalCartAmount()
+
+    override fun clearCart() = localData.clearCart()
 }

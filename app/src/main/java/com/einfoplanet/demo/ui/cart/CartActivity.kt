@@ -62,6 +62,7 @@ class CartActivity : AppCompatActivity(), ButtonClickListener {
 
     override fun confirmButtonClick(orderId: String) {
         replaceFragment(OrderConfirmationFragment.newInstance(orderId))
+        viewmodel.clearCart() //clearing cart once order is placed successfully
     }
 
     override fun closeButtonClick() {

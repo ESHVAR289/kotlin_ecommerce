@@ -12,4 +12,5 @@ interface CartLocalData {
     fun addProductToCart(cartProduct: CartProduct)
     fun getCartProductCount(): LiveData<Int>
     fun getTotalCartAmount(): LiveData<Int>
+    fun clearCart()
 }

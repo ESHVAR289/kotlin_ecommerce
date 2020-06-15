@@ -25,4 +25,8 @@ class CartViewModel @Inject constructor(private val cartProductListUseCase: Cart
         _productSelectedToRemove.value = cartProduct
     }
 
+    fun clearCart(){
+        cartProductListUseCase.clearCart()
+    }
+
 }
