@@ -57,6 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{restaurantDetail.name}"
+                        style="@style/TextAppearance.ADSSched.SessionTitle"
                         android:textColor="@color/gen_black"
                         android:textSize="16dp"
                         tools:text="Pizza" />
@@ -66,6 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="@{`Rs. ` + restaurantDetail.averageCostForTwo}"
                         android:textColor="@color/gen_black"
                         android:textSize="20dp"
@@ -75,6 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="FREE Delivery"
                         android:textSize="12dp" />
                 </LinearLayout>
@@ -90,6 +93,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="16dp"
                         android:text="Quantity: "
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
@@ -99,6 +103,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="#eeeeee"
                         android:text="-"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="@android:color/black" />
 
                     <EditText
@@ -109,6 +114,7 @@
                         android:layout_marginRight="8dp"
                         android:gravity="center"
                         android:inputType="number"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
                         android:text="0"
@@ -120,6 +126,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="#eeeeee"
                         android:text="+"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="@android:color/black" />
 
                 </LinearLayout>
@@ -159,6 +166,7 @@
                             android:layout_weight="1"
                             android:gravity="left"
                             android:text="Share"
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
                             android:textColor="@color/gen_black"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -190,6 +198,7 @@
                             android:layout_weight="1"
                             android:gravity="left"
                             android:text="Similar"
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
                             android:textColor="@color/gen_black"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -224,6 +233,7 @@
                             android:layout_weight="1"
                             android:gravity="left"
                             android:text="Wishlist"
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
                             android:textColor="@color/gen_black"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -246,6 +256,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Details"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="@color/gen_black"
                         android:textSize="16sp" />
 
@@ -254,6 +265,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="\u2022 Regular fit, full sleeve"
                         android:textColor="@color/gen_black"
                         android:textSize="12sp" />
@@ -285,6 +297,7 @@
                 android:background="@color/gen_white"
                 android:gravity="center"
                 android:text="ADD TO CART"
+                style="@style/TextAppearance.ADSSched.SessionTitle"
                 android:textColor="@color/gen_black"
                 android:textSize="14dp"
                 android:textStyle="bold" />
@@ -297,6 +310,7 @@
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="BUY NOW"
+                style="@style/TextAppearance.ADSSched.SessionTitle"
                 android:textColor="@color/gen_white"
                 android:textSize="14dp"
                 android:textStyle="bold" />
