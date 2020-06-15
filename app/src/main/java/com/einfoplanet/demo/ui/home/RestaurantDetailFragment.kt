@@ -55,8 +55,13 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
                     return@setOnClickListener
                 }
             }
-            viewModel.addProductToCart(viewModel.singleRestaurantData.value!!)
-            Toast.makeText(requireContext(), "Product added successfully.", Toast.LENGTH_SHORT).show()
+            if (binding.etProductQuantity.text.toString().toInt() > 0) {
+                viewModel.addProductToCart(viewModel.singleRestaurantData.value!!,
+                        binding.etProductQuantity.text.toString())
+                Toast.makeText(requireContext(), "Product added successfully.", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(requireContext(), "Invalid cart quantity.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnIncrementQuantity.setOnClickListener {
@@ -69,9 +74,11 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
 
         binding.etProductQuantity.afterTextChanged {
             if (binding.etProductQuantity.text.isEmpty()) {
-                binding.etProductQuantity.setText("0")
-            } else if (binding.etProductQuantity.text.toString().toInt() >= 10) {
+                binding.etProductQuantity.setText("1")
+            } else if (binding.etProductQuantity.text.toString().toInt() > 10) {
                 Toast.makeText(requireContext(), "Product Count Must be less than 10", Toast.LENGTH_LONG).show()
+            } else if (binding.etProductQuantity.text.toString().toInt() in 1..9) {
+                quantity = binding.etProductQuantity.text.toString().toInt()
             }
         }
 

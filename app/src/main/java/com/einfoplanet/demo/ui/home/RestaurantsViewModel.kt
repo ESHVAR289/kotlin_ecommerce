@@ -70,12 +70,12 @@ class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase
         )
     }
 
-    fun addProductToCart(restaurant: Restaurant) {
+    fun addProductToCart(restaurant: Restaurant, quantity: String) {
         cartProductListUseCase.addProductToCart(CartProduct(
                 restaurantId = restaurant.id,
                 restaurantName = restaurant.name,
                 url = restaurant.url,
-                quantity = 3,
+                quantity = quantity.toInt(),
                 averageCostForTwo = restaurant.averageCostForTwo,
                 thumb = restaurant.thumb
         ))
