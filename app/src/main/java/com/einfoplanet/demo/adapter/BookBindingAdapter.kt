@@ -1,15 +1,21 @@
 package com.einfoplanet.demo.adapter
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.repository.LoadingStatus
 import com.einfoplanet.demo.repository.Status
@@ -20,6 +26,31 @@ fun bindImage(imageView: ImageView, imagePath: String?) {
     imagePath?.let {
         Glide.with(imageView.context)
                 .load(imagePath)
+                .into(imageView)
+    }
+}
+
+@BindingAdapter("imgUrl")
+fun bindImageWithProgress(imageView: ImageView, imagePath: String?) {
+    val progressBar = imageView.rootView.findViewById<ProgressBar>(R.id.progress_bar_rl)
+    progressBar.visibility = View.VISIBLE
+    imagePath?.let {
+        Glide.with(imageView.context)
+                .load(imagePath)
+                .placeholder(R.drawable.drawerback)
+                .error(R.drawable.drawerback)
+                .addListener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                        progressBar.visibility = View.GONE
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        progressBar.visibility = View.GONE
+                        return false
+                    }
+
+                })
                 .into(imageView)
     }
 }

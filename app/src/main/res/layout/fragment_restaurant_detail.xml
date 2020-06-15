@@ -39,12 +39,26 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/iv_product_image"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    app:imageUrl="@{restaurantDetail.featuredImage}"
-                    tools:src="@drawable/drawerback" />
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/iv_product_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:imgUrl="@{restaurantDetail.featuredImage}"
+                        tools:src="@drawable/drawerback" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true" />
+
+                </RelativeLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
