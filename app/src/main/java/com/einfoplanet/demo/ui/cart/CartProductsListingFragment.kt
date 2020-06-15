@@ -70,7 +70,16 @@ class CartProductsListingFragment : Fragment(), MainNavigationFragment {
 
     private fun initViewModel() {
         viewModel.cartProductsLiveData.observe(viewLifecycleOwner, Observer {
-            cartProductsListAdapter.setList(it)
+            if (it.isNotEmpty()) {
+                binding.recyclerview.visibility = View.VISIBLE
+                binding.ivEmptyCart.visibility = View.GONE
+                binding.llLayout.visibility = View.VISIBLE
+                cartProductsListAdapter.setList(it)
+            } else {
+                binding.ivEmptyCart.visibility = View.VISIBLE
+                binding.recyclerview.visibility = View.GONE
+                binding.llLayout.visibility = View.GONE
+            }
         })
         viewModel.cartProductsCount.observe(viewLifecycleOwner, Observer {
             Log.e("cart count", "count $it")
