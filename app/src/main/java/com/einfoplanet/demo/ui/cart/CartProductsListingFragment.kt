@@ -6,15 +6,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.einfoplanet.demo.adapter.CartProductListAdapter
 import com.einfoplanet.demo.databinding.FragmentCartProductsListingBinding
+import com.einfoplanet.demo.db.CartProduct
 import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.util.activityViewModelProvider
+
 
 /**
  * A simple [Fragment] subclass.
@@ -72,8 +75,24 @@ class CartProductsListingFragment : Fragment(), MainNavigationFragment {
         viewModel.cartProductsCount.observe(viewLifecycleOwner, Observer {
             Log.e("cart count", "count $it")
         })
+        viewModel.productSelectedToRemove.observe(viewLifecycleOwner, Observer {
+            showAlertDialog(it)
+        })
         viewModel.cartProductsLiveData
         viewModel.cartProductsCount
+    }
+
+    fun showAlertDialog(cartProduct: CartProduct) {
+        val alertDialog: AlertDialog = AlertDialog.Builder(requireContext()).create()
+        alertDialog.setTitle("Alert")
+        alertDialog.setMessage("Do you want to remove product from cart?")
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { _, _ ->
+            viewModel.removeCartProduct(cartProduct)
+        }
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL") { dialog, _ ->
+            dialog.dismiss()
+        }
+        alertDialog.show()
     }
 
     override fun onAttach(context: Context) {

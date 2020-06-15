@@ -21,5 +21,5 @@ interface CartDao {
     fun getAllProductTotalPrice(): LiveData<Int>
 
     @Query("DELETE FROM CARTPRODUCT where restaurantId= :restaurantId")
-    fun deleteProductFromCart(restaurantId: Int): Int
+    fun deleteProductFromCart(restaurantId: String): Int
 }

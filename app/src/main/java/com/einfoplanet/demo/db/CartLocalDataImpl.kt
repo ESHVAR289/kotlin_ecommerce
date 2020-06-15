@@ -12,7 +12,7 @@ class CartLocalDataImpl @Inject constructor(private val appExecutors: AppExecuto
 
     override fun removeFromCart(cartProduct: CartProduct) {
         appExecutors.diskIO().execute {
-            cartDao.deleteProductFromCart(cartProduct.id)
+            cartDao.deleteProductFromCart(cartProduct.restaurantId)
         }
     }
 
