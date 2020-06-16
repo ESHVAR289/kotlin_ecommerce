@@ -9,6 +9,7 @@ class SharedPrefUtil(context: Context) {
 
     companion object {
         private const val IS_FIRST_TIME_LAUNCH = "isFirstTimeLaunch"
+        private const val LOGGED_IN_USER_EMAIL_ID = "emailId"
         private const val PREFERENCE_NAME = "sharedPrefFileName"
         private const val IS_LOGIN = "isLogin"
 
@@ -23,6 +24,12 @@ class SharedPrefUtil(context: Context) {
 
     fun setFirstTimeLaunch(isFirstTime: Boolean) {
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime)
+        editor.commit()
+    }
+
+    fun setLoginData(userEmail: String, isLogin: Boolean) {
+        editor.putBoolean(IS_LOGIN, isLogin)
+        editor.putString(LOGGED_IN_USER_EMAIL_ID, userEmail)
         editor.commit()
     }
 
