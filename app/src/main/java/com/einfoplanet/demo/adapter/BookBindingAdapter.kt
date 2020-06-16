@@ -136,6 +136,15 @@ fun setTextViewTint(textView: TextView, colorValue: String?) {
     }
 }
 
+@BindingAdapter("likeDislike")
+fun likeDislike(imageView: ImageView, isLike: Boolean) {
+    if (isLike) {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.avd_star_event))
+    } else {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, R.drawable.ic_star_border))
+    }
+}
+
 @BindingAdapter("visibleGone")
 fun showHide(view: View, show: Boolean) {
     if (show) view.visibility = View.VISIBLE else view.visibility = View.GONE

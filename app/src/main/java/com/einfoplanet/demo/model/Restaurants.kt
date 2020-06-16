@@ -72,6 +72,7 @@ data class Restaurants(
             @SerializedName("has_table_booking") var hasTableBooking: Int,
             @SerializedName("events_url") var eventsUrl: String
         ) {
+            var isLike: Boolean = false
             data class R(
                 @SerializedName("has_menu_status") var hasMenuStatus: HasMenuStatus,
                 @SerializedName("res_id") var resId: Int

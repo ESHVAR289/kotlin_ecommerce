@@ -1,6 +1,5 @@
 package com.einfoplanet.demo.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -48,6 +47,18 @@ class RestaurantGridAdapter constructor(
 
             binding!!.restaurantClickEventListener = restaurantClickEventListener
             binding!!.viewModel = restaurantData
+            binding!!.likeDislike.tag = restaurantData.id
+
+            binding!!.likeDislike.setOnClickListener {
+                //Logic to handle checking and unchecking of start
+                val resId = it.tag
+                val index = nearbyRestaurants.indexOfFirst {
+                    it.restaurant.id == resId
+                }
+                val restaurantObj = nearbyRestaurants[index]
+                nearbyRestaurants[index].restaurant.isLike = !restaurantObj.restaurant.isLike
+                notifyItemChanged(index)
+            }
         }
     }
 }
