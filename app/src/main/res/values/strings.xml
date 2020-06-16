@@ -17,6 +17,8 @@
     <string name="error_invalid_lat_lng">Invalid Lat Lan !!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_no_books_in_db">No books found in Database</string>
+    <string name="facebook_app_id">982227535513930</string>
+    <string name="fb_login_protocol_scheme">fb982227535513930</string>
 
     <string-array name="authors_array">
         <item>Select Author</item>
