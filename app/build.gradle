@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -46,6 +47,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.navigation:navigation-fragment:2.2.1'
     implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
     testImplementation "androidx.arch.core:core-testing:$rootProject.lifecycleVersion"
 
@@ -97,5 +99,12 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.4.0'
 
-    implementation  'com.fxn769:pix:1.5.3'
+    implementation 'com.fxn769:pix:1.5.3'
+
+    // Facebook Android SDK (only required for Facebook Login)
+    // Used in FacebookLoginActivity.
+    implementation 'com.facebook.android:facebook-login:4.42.0'
+    implementation 'androidx.browser:browser:1.0.0'
+    // Google Sign In SDK (only required for Google Sign In)
+    implementation 'com.google.android.gms:play-services-auth:18.0.0'
 }

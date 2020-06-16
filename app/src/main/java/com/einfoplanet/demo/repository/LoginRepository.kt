@@ -1,6 +1,8 @@
 package com.einfoplanet.demo.repository
 
+import androidx.lifecycle.MutableLiveData
 import com.einfoplanet.demo.model.LoggedInUser
+import com.einfoplanet.demo.ui.login.LoginResult
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -27,13 +29,14 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String, _loginResult: MutableLiveData<LoginResult>) {
         // handle login
-        val result = dataSource.login(username, password)
+//        val result = dataSource.login(username, password)
+        val result = dataSource.signIn(username, password, _loginResult)
 
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
+//        if (result is Result.Success) {
+//            setLoggedInUser(result.data)
+//        }
 
         return result
     }
