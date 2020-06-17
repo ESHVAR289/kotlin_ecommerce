@@ -9,6 +9,9 @@ import com.einfoplanet.demo.listeners.RemoveCartProductClickEventListener
 import javax.inject.Inject
 
 class CartViewModel @Inject constructor(private val cartProductListUseCase: CartProductListUseCase) : ViewModel(), RemoveCartProductClickEventListener {
+    companion object{
+        const val ESTIMATED_DELIVERY_DATE = "30/06/2020"
+    }
     val cartProductsLiveData: LiveData<List<CartProduct>> = cartProductListUseCase.getAllCartProducts()
     val cartProductsCount: LiveData<Int> = cartProductListUseCase.getCartProductsCount()
     val cartTotalAmount: LiveData<Int> = cartProductListUseCase.getTotalCartAmount()

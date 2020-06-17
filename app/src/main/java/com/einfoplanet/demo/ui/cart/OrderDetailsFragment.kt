@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.einfoplanet.demo.databinding.FragmentOrderDetailsBinding
 import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
+import com.einfoplanet.demo.util.AppConstants
 import com.einfoplanet.demo.util.activityViewModelProvider
 import kotlinx.android.synthetic.main.fragment_order_details.*
 import kotlin.random.Random
@@ -25,6 +26,7 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
     private lateinit var viewModel: CartViewModel
     private lateinit var binding: FragmentOrderDetailsBinding
     private lateinit var buttonClick: ButtonClickListener
+    private var strEDD: String = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,7 +41,10 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            val bundle: Bundle = arguments as Bundle
+            bundle.let {
+                strEDD = it.getString(AppConstants.ESTIMATED_DATE_OF_DELIVERY)!!
+            }
         }
     }
 
@@ -58,6 +63,8 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
                 buttonClick.confirmButtonClick(orderId)
             }
         }
+
+        binding.txtDeliveryDate.text = strEDD
 
         binding.rbPaytm.setOnClickListener {
             Toast.makeText(requireContext(), "This feature will coming soon", Toast.LENGTH_SHORT).show()
@@ -113,7 +120,14 @@ class OrderDetailsFragment : Fragment(), MainNavigationFragment {
     }
 
     companion object {
-        fun newInstance() =
-                OrderDetailsFragment()
+        fun newInstance(strEDD: String): OrderDetailsFragment {
+
+            val args = Bundle().apply {
+                putString(AppConstants.ESTIMATED_DATE_OF_DELIVERY, strEDD)
+            }
+            return OrderDetailsFragment().apply { arguments = args }
+
+        }
+
     }
 }

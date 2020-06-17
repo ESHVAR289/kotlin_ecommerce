@@ -85,7 +85,7 @@
     Email : beingdevofficial@gmail.com\n
     Address : 424 Lorem Ipsum , Pune , Maharashtra ( 226025 )</string>
     <string name="title_activity_process_order">ProcessOrder</string>
-    <string name="orderdetails">Your Order has been Placed Succesfully. \n Here is your Unique Order Id !</string>
+    <string name="orderdetails">Your Order has been Placed Successfully!</string>
 
 
     <string name="title_activity_welcome">Home Screen</string>

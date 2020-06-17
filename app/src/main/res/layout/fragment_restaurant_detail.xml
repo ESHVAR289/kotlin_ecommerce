@@ -93,7 +93,30 @@
                         android:layout_marginTop="4dp"
                         style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:text="FREE Delivery"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Estimated Delivery : "
+                            android:textColor="#424242"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/txt_delivery_date"
+                            style="@style/TextAppearance.ADSSched.SessionTitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30/06/2020"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout

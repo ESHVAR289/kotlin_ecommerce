@@ -7,6 +7,7 @@ import com.einfoplanet.demo.R
 import com.einfoplanet.demo.ShoppingSampleApp
 import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
+import com.einfoplanet.demo.ui.cart.CartViewModel.Companion.ESTIMATED_DELIVERY_DATE
 import com.einfoplanet.demo.util.inTransaction
 import com.einfoplanet.demo.util.viewModelProvider
 import javax.inject.Inject
@@ -56,13 +57,11 @@ class CartActivity : AppCompatActivity(), ButtonClickListener {
     }
 
     override fun placeOrderButtonClick() {
-
-        addFragment(OrderDetailsFragment.newInstance())
+        addFragment(OrderDetailsFragment.newInstance(ESTIMATED_DELIVERY_DATE))
     }
 
     override fun confirmButtonClick(orderId: String) {
-        replaceFragment(OrderConfirmationFragment.newInstance(orderId))
-        viewmodel.clearCart() //clearing cart once order is placed successfully
+        replaceFragment(OrderConfirmationFragment.newInstance(orderId, ESTIMATED_DELIVERY_DATE))
     }
 
     override fun closeButtonClick() {

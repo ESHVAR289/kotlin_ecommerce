@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
 
@@ -31,13 +32,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:foregroundGravity="center"
                     app:lottie_autoPlay="true"
                     app:lottie_fileName="orderplaced.json" />
@@ -50,6 +51,30 @@
                     android:gravity="center"
                     android:text="@string/orderdetails" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/borderfile"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextAppearance.ADSSched.SessionTitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estimated Delivery Date : "
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:id="@+id/txt_delivery_date"
+                        style="@style/TextAppearance.ADSSched.SessionTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        tools:text="28/06/2020" />
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/txt_order_id"
@@ -59,9 +84,23 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/borderfile"
                     android:gravity="center"
-                    android:text="FVF1FF12T"
+                    android:text="ODD45124"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
+
+                <TextView
+                    style="@style/TextAppearance.ADSSched.SessionTitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Your order details" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" />
             </LinearLayout>
 
         </ScrollView>

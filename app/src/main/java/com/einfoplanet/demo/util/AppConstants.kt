@@ -6,5 +6,6 @@ class AppConstants {
         const val CURRENT_LONGITUDE = "current_lng"
         const val SELECTED_RESTAURANT_ID = "restaurant_id"
         const val UNIQUE_ORDER_ID = "order_id"
+        const val ESTIMATED_DATE_OF_DELIVERY = "edd"
     }
 }
