@@ -1,5 +1,6 @@
 package com.einfoplanet.demo.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.einfoplanet.demo.databinding.FragmentRestaurantDetailBinding
+import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.ui.login.afterTextChanged
 import com.einfoplanet.demo.util.AppConstants.Companion.SELECTED_RESTAURANT_ID
@@ -23,6 +25,7 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
     private lateinit var viewModel: RestaurantsViewModel
     private lateinit var binding: FragmentRestaurantDetailBinding
     private var quantity: Int = 0
+    private lateinit var buttonClick: ButtonClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +62,25 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
                 viewModel.addProductToCart(viewModel.singleRestaurantData.value!!,
                         binding.etProductQuantity.text.toString())
                 Toast.makeText(requireContext(), "Product added successfully.", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
+                Toast.makeText(requireContext(), "Invalid cart quantity.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.txtBuyNow.setOnClickListener {
+            //Check before adding product into cart
+            viewModel.cartProductsLiveData.value?.forEach {
+                if (it.restaurantId == viewModel.singleRestaurantData.value!!.id) {
+                    Toast.makeText(requireContext(), "Product already present into your cart.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
+            if (binding.etProductQuantity.text.toString().toInt() > 0) {
+                viewModel.addProductToCart(viewModel.singleRestaurantData.value!!,
+                        binding.etProductQuantity.text.toString())
+                buttonClick.buyNowButtonClick()
+                Toast.makeText(requireContext(), "Product added successfully.", Toast.LENGTH_SHORT).show()
+            } else {
                 Toast.makeText(requireContext(), "Invalid cart quantity.", Toast.LENGTH_SHORT).show()
             }
         }
@@ -82,9 +103,31 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
             }
         }
 
+        binding.llShare.setOnClickListener {
+            Toast.makeText(requireContext(), "Feature coming soon...", Toast.LENGTH_LONG).show()
+        }
+
+        binding.llSimilar.setOnClickListener {
+            Toast.makeText(requireContext(), "Feature coming soon...", Toast.LENGTH_LONG).show()
+        }
+
+        binding.llWishlist.setOnClickListener {
+            Toast.makeText(requireContext(), "Feature coming soon...", Toast.LENGTH_LONG).show()
+        }
+
         initViewModel()
 
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is ButtonClickListener) {
+            buttonClick = context
+        } else {
+            throw RuntimeException(context.toString()
+                    + " must implement listener");
+        }
     }
 
     private fun initViewModel() {

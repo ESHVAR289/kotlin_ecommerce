@@ -68,4 +68,8 @@ class CartActivity : AppCompatActivity(), ButtonClickListener {
         finish()
     }
 
+    override fun buyNowButtonClick() {
+
+    }
+
 }

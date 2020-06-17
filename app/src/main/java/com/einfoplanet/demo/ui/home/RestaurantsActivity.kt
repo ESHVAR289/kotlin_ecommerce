@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.ShoppingSampleApp
+import com.einfoplanet.demo.listeners.ButtonClickListener
 import com.einfoplanet.demo.listeners.MainNavigationFragment
 import com.einfoplanet.demo.ui.cart.CartActivity
 import com.einfoplanet.demo.util.inTransaction
@@ -17,7 +18,7 @@ import com.einfoplanet.demo.util.viewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class RestaurantsActivity : AppCompatActivity() {
+class RestaurantsActivity : AppCompatActivity(), ButtonClickListener {
     companion object {
         private const val FRAGMENT_ID = R.id.fragment_container
     }
@@ -38,18 +39,21 @@ class RestaurantsActivity : AppCompatActivity() {
         ))
 
         iv_cart.setOnClickListener {
-            viewModel.cartProductsLiveData.value?.let {
-                if (it.isNotEmpty()) {
-                    startActivity(Intent(this@RestaurantsActivity, CartActivity::class.java))
-                } else {
-                    Toast.makeText(this, "Your cart is empty.", Toast.LENGTH_SHORT).show()
-                }
-
-            } ?: Toast.makeText(this, "Your cart is empty.", Toast.LENGTH_SHORT).show()
-
+            goToCart()
         }
 
         initViewModel()
+    }
+
+    private fun goToCart() {
+        viewModel.cartProductsLiveData.value?.let {
+            if (it.isNotEmpty()) {
+                startActivity(Intent(this@RestaurantsActivity, CartActivity::class.java))
+            } else {
+                Toast.makeText(this, "Your cart is empty.", Toast.LENGTH_SHORT).show()
+            }
+
+        } ?: Toast.makeText(this, "Your cart is empty.", Toast.LENGTH_SHORT).show()
     }
 
     private fun initViewModel() {
@@ -104,6 +108,22 @@ class RestaurantsActivity : AppCompatActivity() {
     override fun onUserInteraction() {
         super.onUserInteraction()
         currentFragment.onUserInteraction()
+    }
+
+    override fun placeOrderButtonClick() {
+
+    }
+
+    override fun confirmButtonClick(orderId: String) {
+
+    }
+
+    override fun closeButtonClick() {
+
+    }
+
+    override fun buyNowButtonClick() {
+        goToCart()
     }
 
 }
