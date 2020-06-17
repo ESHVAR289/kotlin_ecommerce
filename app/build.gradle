@@ -93,10 +93,6 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber"
     debugImplementation "com.amitshekhar.android:debug-db:$db_test"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
     implementation 'com.airbnb.android:lottie:3.4.0'
 
     implementation 'com.fxn769:pix:1.5.3'
@@ -107,4 +103,36 @@ dependencies {
     implementation 'androidx.browser:browser:1.0.0'
     // Google Sign In SDK (only required for Google Sign In)
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
+    testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    // Dependencies for Android instrumented unit tests
+    androidTestImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
+//    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    // Testing code should not be included in the main code.
+    // Once https://issuetracker.google.com/128612536 is fixed this can be fixed.
+    implementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    implementation "androidx.test:core:$androidXTestCoreVersion"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+
+    // AndroidX Test - Instrumented testing
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+//    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 }
