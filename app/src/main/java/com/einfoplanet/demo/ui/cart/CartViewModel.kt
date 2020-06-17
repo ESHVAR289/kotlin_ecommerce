@@ -24,6 +24,10 @@ class CartViewModel @Inject constructor(private val cartProductListUseCase: Cart
         cartProductListUseCase.removeCartProduct(cartProduct)
     }
 
+    fun addProductToCart(cartProduct: CartProduct) {
+        cartProductListUseCase.addProductToCart(cartProduct)
+    }
+
     override fun onProductSelected(cartProduct: CartProduct) {
         _productSelectedToRemove.value = cartProduct
     }
