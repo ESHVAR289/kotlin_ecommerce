@@ -9,7 +9,7 @@ import dagger.Subcomponent
 
 @Subcomponent(modules = [RestaurantDataModule::class, CartModule::class])
 @FragmentScope
-interface FragmentComponent {
+interface ActivityComponent {
     fun inject(restaurantsActivity: RestaurantsActivity)
     fun inject(cartActivity: CartActivity)
 }

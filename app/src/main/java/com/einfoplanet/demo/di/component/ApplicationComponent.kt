@@ -12,7 +12,7 @@ import dagger.Component
     RestaurantRetrofitModule::class])
 @ApplicationScope
 interface ApplicationComponent{
-    fun plusFragmentComponent() : FragmentComponent
+    fun plusActivityComponent() : ActivityComponent
 
 
     @Component.Builder

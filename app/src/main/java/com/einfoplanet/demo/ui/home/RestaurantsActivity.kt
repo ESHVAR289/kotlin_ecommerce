@@ -30,7 +30,7 @@ class RestaurantsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ShoppingSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        ShoppingSampleApp.instance.getApplicationComponent().plusActivityComponent().inject(this)
         viewModel = viewModelProvider(restaurantViewModelFactory)
         replaceFragment(RestaurantsFragment.newInstance(
                 0.0,

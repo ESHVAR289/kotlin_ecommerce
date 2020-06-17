@@ -25,7 +25,7 @@ class CartActivity : AppCompatActivity(), ButtonClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
-        ShoppingSampleApp.instance.getApplicationComponent().plusFragmentComponent().inject(this)
+        ShoppingSampleApp.instance.getApplicationComponent().plusActivityComponent().inject(this)
         viewmodel = viewModelProvider(cartViewModelFactory)
         replaceFragment(CartProductsListingFragment.newInstance())
         initViewModel()

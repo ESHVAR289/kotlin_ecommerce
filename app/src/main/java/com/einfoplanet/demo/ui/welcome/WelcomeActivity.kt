@@ -93,6 +93,7 @@ class WelcomeActivity : AppCompatActivity() {
         } else {
             startActivity(Intent(this@WelcomeActivity, RestaurantsActivity::class.java))
         }
+        finish()
     }
 
     /**
