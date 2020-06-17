@@ -44,6 +44,7 @@ data class Restaurant(
     @SerializedName("all_reviews") var allReviews: AllReviews,
     @SerializedName("establishment") var establishment: List<String>
 ) {
+    var strHighlights: String = ""
     data class R(
         @SerializedName("has_menu_status") var hasMenuStatus: HasMenuStatus,
         @SerializedName("res_id") var resId: Int

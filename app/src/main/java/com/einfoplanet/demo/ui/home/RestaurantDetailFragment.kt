@@ -88,8 +88,14 @@ class RestaurantDetailFragment : Fragment(), MainNavigationFragment {
     }
 
     private fun initViewModel() {
-        viewModel.singleRestaurantData.observe(viewLifecycleOwner, Observer {
-            binding.restaurantDetail = it
+
+        viewModel.singleRestaurantData.observe(viewLifecycleOwner, Observer { restaurant ->
+            var commaSeparatedString = ""
+            restaurant.highlights.forEach {
+                commaSeparatedString += "$it, "
+            }
+            restaurant.strHighlights = commaSeparatedString
+            binding.restaurantDetail = restaurant
         })
 
 

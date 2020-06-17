@@ -292,7 +292,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Details"
+                        android:text="Highlights"
                         style="@style/TextAppearance.ADSSched.SessionTitle2"
                         android:textColor="@color/gen_black"
                         android:textSize="16sp" />
@@ -303,7 +303,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         style="@style/TextAppearance.ADSSched.SessionTitle2"
-                        android:text="\u2022 Regular fit, full sleeve"
+                        android:text="@{restaurantDetail.strHighlights}"
+                        tools:text="\u2022 Restaurant highlights"
                         android:textColor="@color/gen_black"
                         android:textSize="12sp" />
 

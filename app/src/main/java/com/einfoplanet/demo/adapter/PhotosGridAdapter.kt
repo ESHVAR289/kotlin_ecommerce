@@ -6,13 +6,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.einfoplanet.demo.R
 import com.einfoplanet.demo.databinding.ItemPhotoBinding
-import com.einfoplanet.demo.model.Restaurants
+import com.einfoplanet.demo.model.Restaurant
 
 /**
  * Adapter used to load the photos of selected restaurant.
  */
 class PhotosGridAdapter constructor(
-        private var photosList: List<Restaurants.NearbyRestaurant.Restaurant>) : RecyclerView.Adapter<PhotosGridAdapter.CustomViewHolder>() {
+        private var photosList: List<Restaurant.Photo>) : RecyclerView.Adapter<PhotosGridAdapter.CustomViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val binding = DataBindingUtil.inflate<ItemPhotoBinding>(
                 LayoutInflater.from(parent.context),
@@ -25,13 +25,13 @@ class PhotosGridAdapter constructor(
         return photosList.size
     }
 
-    fun setList(photosList: List<Restaurants.NearbyRestaurant.Restaurant>) {
+    fun setList(photosList: List<Restaurant.Photo>) {
         this.photosList = photosList
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        holder.bind(photoUri = photosList[position].url)
+        holder.bind(photoUri = photosList[position].photo.thumbUrl)
     }
 
     inner class CustomViewHolder(itemView: ItemPhotoBinding) :
