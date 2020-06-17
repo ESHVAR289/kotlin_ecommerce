@@ -65,7 +65,7 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
             buttonClick.closeButtonClick()
         }
 
-        cartProductsListAdapter = CartProductListAdapter(viewModel, emptyList())
+        cartProductsListAdapter = CartProductListAdapter(viewModel, emptyList(), false)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.apply {
             adapter = cartProductsListAdapter

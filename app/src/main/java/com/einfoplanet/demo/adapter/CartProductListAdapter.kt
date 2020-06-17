@@ -14,7 +14,8 @@ import com.einfoplanet.demo.listeners.RemoveCartProductClickEventListener
  */
 class CartProductListAdapter constructor(
         private val removeCartProductClickEventListener: RemoveCartProductClickEventListener,
-        private var cartProductsList: List<CartProduct>) : RecyclerView.Adapter<CartProductListAdapter.CustomViewHolder>() {
+        private var cartProductsList: List<CartProduct>,
+        private var isFromProductListingPage: Boolean = true) : RecyclerView.Adapter<CartProductListAdapter.CustomViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val binding = DataBindingUtil.inflate<CartItemLayoutBinding>(
                 LayoutInflater.from(parent.context),
@@ -45,6 +46,7 @@ class CartProductListAdapter constructor(
                 binding = DataBindingUtil.bind(itemView)
 
             binding!!.removeCartProductClickEventListener = removeCartProductClickEventListener
+            cartProduct.isFromOrderProductListing = isFromProductListingPage
             binding!!.viewModel = cartProduct
         }
     }

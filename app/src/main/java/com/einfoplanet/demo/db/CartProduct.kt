@@ -1,6 +1,7 @@
 package com.einfoplanet.demo.db
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
@@ -13,4 +14,7 @@ data class CartProduct(
         @SerializedName("average_cost_for_two") var averageCostForTwo: Int,
         @SerializedName("thumb") var thumb: String,
         @SerializedName("quantity") var quantity: Int
-)
+) {
+    @Ignore
+    var isFromOrderProductListing: Boolean = true
+}

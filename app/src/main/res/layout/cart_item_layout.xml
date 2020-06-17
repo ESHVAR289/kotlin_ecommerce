@@ -67,6 +67,7 @@
                         android:layout_height="30dp"
                         android:layout_weight="1"
                         android:padding="5dp"
+                        visibleGone="@{viewModel.fromOrderProductListing}"
                         android:onClick="@{()->removeCartProductClickEventListener.onProductSelected(viewModel)}"
                         android:src="@drawable/ic_clear_black_18dp" />
 
