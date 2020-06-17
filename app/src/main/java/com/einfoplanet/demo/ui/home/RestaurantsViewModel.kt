@@ -51,20 +51,26 @@ class RestaurantsViewModel @Inject constructor(private val restaurantListUseCase
     var updatedList: List<Restaurants.NearbyRestaurant> = emptyList()
 
     fun getNearbyRestaurants(currentLatitude: Double, currentLongitude: Double) {
+        _isLoading.value = true
         restaurantListUseCase.fetchNearbyRestaurant(19.126582, 72.865980, {
+            _isLoading.value = false
             _restaurantsLiveData.value = it.nearByRestaurant
         }, {
+            _isLoading.value = false
             _errorMessage.value = it.message
         })
     }
 
     fun getRestaurantDetail(restaurantId: String) {
+        _isLoading.value = true
         restaurantListUseCase.getRestaurantDetail(
                 restaurantId,
                 {
+                    _isLoading.value = false
                     _singleRestaurantData.value = it
                 },
                 {
+                    _isLoading.value = false
                     _errorMessage.value = it.message
                 }
         )
