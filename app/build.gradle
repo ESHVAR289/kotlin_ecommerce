@@ -134,5 +134,6 @@ dependencies {
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 //    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 }

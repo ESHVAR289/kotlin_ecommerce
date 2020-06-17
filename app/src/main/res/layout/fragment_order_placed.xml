@@ -44,6 +44,7 @@
                     app:lottie_fileName="orderplaced.json" />
 
                 <TextView
+                    android:id="@+id/txt_order_placed"
                     style="@style/TextAppearance.ADSSched.SessionTitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
