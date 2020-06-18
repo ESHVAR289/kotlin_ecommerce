@@ -39,6 +39,12 @@ class OrderConfirmationFragment : Fragment(), MainNavigationFragment {
         }
     }
 
+    override fun onBackPressed(): Boolean {
+        viewModel.clearCart()
+        buttonClick.closeButtonClick()
+        return super.onBackPressed()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
