@@ -14,98 +14,91 @@
             type="com.einfoplanet.demo.db.CartProduct" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingBottom="@dimen/margin_medium">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/image_cartlist"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            app:imageUrl="@{viewModel.thumb}"
+            tools:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cart_prtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cart_prtitle"
+            style="@style/TextAppearance.ADSSched.SessionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text="@{viewModel.restaurantName}"
+            app:layout_constraintEnd_toStartOf="@id/iv_delete_frm_cart"
+            app:layout_constraintStart_toEndOf="@id/image_cartlist"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pizza" />
+
+        <ImageView
+            android:id="@+id/iv_delete_frm_cart"
+            visibleGone="@{viewModel.fromOrderProductListing}"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:onClick="@{()->removeCartProductClickEventListener.onProductSelected(viewModel)}"
+            android:padding="5dp"
+            android:src="@drawable/ic_clear_black_18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cart_prtitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cart_prprice"
+            style="@style/TextAppearance.ADSSched.SpeakerTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{`Rs `+ viewModel.averageCostForTwo*viewModel.quantity}"
+            app:layout_constraintStart_toStartOf="@id/cart_prtitle"
+            app:layout_constraintTop_toBottomOf="@id/cart_prtitle"
+            tools:text="Rs 8,999" />
 
-            <ImageView
-                android:id="@+id/image_cartlist"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                app:imageUrl="@{viewModel.thumb}" />
+        <TextView
+            android:id="@+id/label_delivery_charge"
+            style="@style/TextAppearance.ADSSched.SessionTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery charge: FREE"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="@id/cart_prprice"
+            app:layout_constraintTop_toBottomOf="@id/cart_prprice" />
 
-            <LinearLayout
-                android:id="@+id/layout_item_desc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/cart_prtitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="9"
-                        style="@style/TextAppearance.ADSSched.SessionTitle"
-                        android:ellipsize="end"
-                        android:gravity="center_vertical"
-                        android:text="@{viewModel.restaurantName}"
-                        android:singleLine="true"
-                        tools:text="Pizza" />
-
-                    <ImageView
-                        android:id="@+id/iv_delete_frm_cart"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_weight="1"
-                        android:padding="5dp"
-                        visibleGone="@{viewModel.fromOrderProductListing}"
-                        android:onClick="@{()->removeCartProductClickEventListener.onProductSelected(viewModel)}"
-                        android:src="@drawable/ic_clear_black_18dp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/cart_prprice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    style="@style/TextAppearance.ADSSched.SpeakerTitle"
-                    android:text="@{`Rs `+ viewModel.averageCostForTwo*viewModel.quantity}"
-                    tools:text="Rs 8,999" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delivery charge: FREE"
-                    style="@style/TextAppearance.ADSSched.SessionTitle2"
-                    android:textSize="@dimen/text_size_small" />
-
-                <TextView
-                    android:id="@+id/cart_prcount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{`Qty: `+ viewModel.quantity}"
-                    android:textSize="@dimen/text_size_small"
-                    style="@style/TextAppearance.ADSSched.SessionTitle2"
-                    tools:text="Qty: 1" />
-
-            </LinearLayout>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/cart_prcount"
+            style="@style/TextAppearance.ADSSched.SessionTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Qty: `+ viewModel.quantity}"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="@id/label_delivery_charge"
+            app:layout_constraintTop_toBottomOf="@id/label_delivery_charge"
+            tools:text="Qty: 1" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_width_small"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/grey_light" />
-    </LinearLayout>
+            android:background="@color/grey_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_cartlist" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
