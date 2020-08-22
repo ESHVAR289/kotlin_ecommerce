@@ -12,6 +12,10 @@ class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : Lif
     private var started = false
     private val lifecycle = lifecycleOwner.lifecycle
 
+    init {
+        lifecycle.addObserver(this)
+    }
+
     private val countDownTimer = object : CountDownTimer(60000, 3000) {
         override fun onFinish() {
             Toast.makeText(application, "Timer finished", Toast.LENGTH_SHORT).show()
