@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 
 class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : LifecycleObserver {
+    private var started = false
 
     private val countDownTimer = object : CountDownTimer(60000, 3000) {
         override fun onFinish() {
@@ -23,7 +24,10 @@ class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : Lif
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun startCountDownTimer() {
-        countDownTimer.start()
+        if (!started) {
+            countDownTimer.start()
+            started = true
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
