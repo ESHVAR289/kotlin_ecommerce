@@ -16,4 +16,8 @@ class TimerToast(application: Application) {
         }
 
     }
+
+    fun startCountDownTimer(){
+        countDownTimer.start()
+    }
 }
