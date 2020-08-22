@@ -10,7 +10,7 @@ class LifeCycleTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_life_cycle_test)
-        timerToast = TimerToast(application)
+        timerToast = TimerToast(application, this)
         timerToast.startCountDownTimer()
     }
 
