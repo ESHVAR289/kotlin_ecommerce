@@ -11,11 +11,5 @@ class LifeCycleTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_life_cycle_test)
         timerToast = TimerToast(application, this)
-        timerToast.startCountDownTimer()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        timerToast.cancelCountDownTimer()
     }
 }
