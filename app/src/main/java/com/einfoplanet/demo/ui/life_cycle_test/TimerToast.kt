@@ -3,8 +3,10 @@ package com.einfoplanet.demo.ui.life_cycle_test
 import android.app.Application
 import android.os.CountDownTimer
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 
 class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : LifecycleObserver {
 
@@ -19,10 +21,12 @@ class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : Lif
 
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun startCountDownTimer() {
         countDownTimer.start()
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun cancelCountDownTimer() {
         countDownTimer.cancel()
     }
