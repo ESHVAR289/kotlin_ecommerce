@@ -18,7 +18,9 @@ class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : Lif
         }
 
         override fun onTick(millisUntilFinished: Long) {
-            Toast.makeText(application, "Tick : $millisUntilFinished", Toast.LENGTH_SHORT).show()
+            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) {
+                Toast.makeText(application, "Tick : $millisUntilFinished", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
