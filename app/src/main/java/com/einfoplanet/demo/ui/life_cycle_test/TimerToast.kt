@@ -10,6 +10,7 @@ import androidx.lifecycle.OnLifecycleEvent
 
 class TimerToast(application: Application, lifecycleOwner: LifecycleOwner) : LifecycleObserver {
     private var started = false
+    private val lifecycle = lifecycleOwner.lifecycle
 
     private val countDownTimer = object : CountDownTimer(60000, 3000) {
         override fun onFinish() {
